@@ -6,6 +6,7 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -35,6 +36,16 @@ public class MainUsuarioBean implements Serializable {
         cargarUsuarios();
     }
 
+    private Usuario usuarioSeleccionado;
+
+    public Usuario getUsuarioSeleccionado() {
+        return usuarioSeleccionado;
+    }
+
+    public void setUsuarioSeleccionado(Usuario usuarioSeleccionado) {
+        this.usuarioSeleccionado = usuarioSeleccionado;
+    }
+
     public List<Usuario> getUsuarios() {
         return usuarios;
     }
@@ -43,32 +54,49 @@ public class MainUsuarioBean implements Serializable {
         try {
             this.usuarios = usuarioServicio.listarUsuarios();
         } catch (Exception e) {
-            // Manejar la excepción según tus necesidades
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al cargar usuarios", null));
         }
     }
 
-    public void actualizarUsuario(Usuario usuario) {
+    public void onRowEdit(RowEditEvent<Usuario> event) {
         try {
-            usuarioServicio.actualizarUsuario(usuario);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario actualizado correctamente", null));
+            Usuario usuarioEditado = event.getObject();
+
+            // Lógica de edición - actualiza el usuario en la base de datos
+            usuarioServicio.actualizarUsuario(usuarioEditado);
+
+            // Mostrar mensaje de éxito
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario editado correctamente", null);
+            FacesContext.getCurrentInstance().addMessage("messages", msg);
         } catch (Exception e) {
-            // Manejar la excepción según tus necesidades
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al actualizar usuario", null));
+            // Mostrar mensaje de error
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al editar usuario: " + e.getMessage(), null);
+            FacesContext.getCurrentInstance().addMessage("messages", msg);
         }
-        cargarUsuarios();
     }
+
+    public void onRowCancel(RowEditEvent<Usuario> event) {
+        FacesMessage msg = new FacesMessage("Edición cancelada", String.valueOf(event.getObject().getCodigo()));
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+
+// Otros imports...
 
     public void eliminarUsuario(String codigo) {
         try {
+            // Lógica para eliminar usuario
             usuarioServicio.eliminarUsuario(codigo);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario eliminado correctamente", null));
-            cargarUsuarios(); // Mover la carga de usuarios aquí
+            // Mostrar mensaje de éxito
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuario eliminado correctamente", null);
+            FacesContext.getCurrentInstance().addMessage("messages", msg);
         } catch (Exception e) {
-            // Manejar la excepción según tus necesidades
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al eliminar usuario", null));
+            // Mostrar mensaje de error
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al eliminar usuario: " + e.getMessage(), null);
+            FacesContext.getCurrentInstance().addMessage("messages", msg);
         }
     }
+
 
     public String redirigirFormulario() {
         return "registrar_usuario.xhtml?faces-redirect=true";
@@ -76,8 +104,9 @@ public class MainUsuarioBean implements Serializable {
 
     public void generarReportePDF() {
         try {
+            // Lógica para generar el informe PDF
             Document document = new Document();
-            String filePath = "C:/Users/lenovo/Desktop/pdfs/usuarios.pdf"; // Establece la ruta y nombre del archivo PDF
+            String filePath = "C:/Users/lenovo/Desktop/pdfs/usuarios.pdf";
 
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
@@ -92,33 +121,23 @@ public class MainUsuarioBean implements Serializable {
                 document.add(new Paragraph("Username: " + usuario.getUsername()));
                 document.add(new Paragraph("Password: " + usuario.getPassword()));
                 document.add(new Paragraph(""));
-
-                // Puedes personalizar el formato del informe según tus necesidades
             }
 
             document.close();
 
-            FacesContext facesContext = FacesContext.getCurrentInstance();
-            ExternalContext externalContext = facesContext.getExternalContext();
-
-            externalContext.responseReset();
-            externalContext.setResponseContentType("application/pdf");
-            externalContext.setResponseHeader("Content-Disposition", "attachment;filename=usuarios.pdf");
-
-            try {
-                externalContext.getResponseOutputStream().write(filePath.getBytes());
-                externalContext.getResponseOutputStream().flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            facesContext.responseComplete();
+            // Mostrar mensaje de éxito
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informe PDF generado correctamente", null);
+            FacesContext.getCurrentInstance().addMessage("messages", msg);
 
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al generar el informe PDF", null));
+
+            // Mostrar mensaje de error
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al generar el informe PDF: " + e.getMessage(), null);
+            FacesContext.getCurrentInstance().addMessage("messages", msg);
         }
     }
 
-    // Otros métodos de tu bean
+
+
 }

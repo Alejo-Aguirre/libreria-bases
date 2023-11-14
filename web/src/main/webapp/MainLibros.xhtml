@@ -30,7 +30,8 @@
                 <p:column headerText="Acciones">
                     <!-- Botones de Acciones -->
                     <p:commandButton value="Actualizar" action="#{mainLibroBean.actualizarLibro(libro)}"/>
-                    <p:commandButton value="Eliminar" action="#{mainLibroBean.eliminarLibro(libro)}"/>
+                    <p:commandButton value="Eliminar" action="#{mainLibroBean.eliminarLibro(libro)}"
+                                     update=":form:tablaLibros"/> <!-- Update the ID of your table -->
                 </p:column>
             </p:dataTable>
 

@@ -44,14 +44,22 @@ public class UsuarioServicioImpl implements UsuarioServicio{
 
     @Override
     public Usuario actualizarUsuario(Usuario u) throws Exception {
+        // Buscar el usuario por código
         Optional<Usuario> buscado = usuarioRepo.findById(u.getCodigo());
+
         if (buscado.isPresent()) {
+            // Verificar si ya existe un usuario con el mismo username
             Optional<Usuario> existente = usuarioRepo.findByUsername(u.getUsername());
+
+            // Si existe un usuario con el mismo username y no es el mismo usuario que estamos actualizando
             if (existente.isPresent() && !existente.get().getCodigo().equals(u.getCodigo())) {
                 throw new Exception("El username del usuario ya existe");
             }
+
+            // Guardar la actualización del usuario
             return usuarioRepo.save(u);
         } else {
+            // Si el usuario no existe, lanzar una excepción
             throw new Exception("El usuario no existe");
         }
     }

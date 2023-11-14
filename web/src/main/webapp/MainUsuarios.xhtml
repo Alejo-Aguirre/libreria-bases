@@ -9,49 +9,91 @@
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Main Usuario</title>
+    <title>Main Libro</title>
 </h:head>
 
 <h:body>
     <div class="container mt-5">
-        <h4>Usuarios</h4>
-        <h:form>
-            <!-- Tabla de Usuarios -->
-            <p:dataTable id="usuariosTable" var="usuario" value="#{mainUsuarioBean.usuarios}" paginator="true" rows="10">
-                <p:column headerText="Codigo">
-                    <h:outputText value="#{usuario.codigo}"/>
+        <h4>Libros</h4>
+        <h:form id="librosForm">
+            <!-- Tabla de Libros -->
+            <p:dataTable id="librosTable" var="libro" value="#{mainLibroBean.libros}"
+                         paginator="true" rows="10" selection="#{mainLibroBean.libroSeleccionado}"
+                         rowKey="#{libro.codigo}" editMode="row" rowEditListener="#{mainLibroBean.onRowEdit}">
+
+                <!-- Columna de Edición -->
+                <p:column style="width:32px">
+                    <p:rowEditor />
                 </p:column>
+                <p:column headerText="Código">
+                    <h:outputText value="#{libro.codigo}"/>
+                </p:column>
+                <!-- Agrega más columnas según las propiedades del libro que desees mostrar -->
                 <p:column headerText="Nombre">
-                    <h:outputText value="#{usuario.nombre}"/>
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{libro.nombre}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{libro.nombre}" style="width:100%" />
+                        </f:facet>
+                    </p:cellEditor>
                 </p:column>
-                <p:column headerText="Correo">
-                    <h:outputText value="#{usuario.email}"/>
+                <p:column headerText="Autor">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{libro.autor}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{libro.autor}" style="width:100%" />
+                        </f:facet>
+                    </p:cellEditor>
                 </p:column>
-                <p:column headerText="Direccion">
-                    <h:outputText value="#{usuario.direccion}"/>
-                </p:column>
-                <p:column headerText="Username">
-                    <h:outputText value="#{usuario.username}"/>
-                </p:column>
-                <p:column headerText="Password">
-                    <h:outputText value="#{usuario.password}"/>
-                </p:column>
+                <!-- Ajusta las propiedades del libro según tus necesidades -->
                 <p:column headerText="Acciones">
-                    <!-- Botones de Acciones -->
-                    <p:commandButton value="Actualizar" action="#{mainUsuarioBean.actualizarUsuario(usuario)}"/>
-                    <p:commandButton value="Eliminar" action="#{mainUsuarioBean.eliminarUsuario(usuario.codigo)}">
-                        <p:ajax update="usuariosTable"/>
+                    <!-- Eliminar -->
+                    <p:commandButton value="Eliminar" action="#{mainLibroBean.eliminarLibro(libro)}"
+                                     update=":librosForm:librosTable :librosForm:growl @form" process="@this"/>
+                    <!-- Editar -->
+                    <p:commandButton value="Editar" oncomplete="PF('editDialog').show()" update=":librosForm:editForm" process="@this">
+                        <f:setPropertyActionListener target="#{mainLibroBean.libroSeleccionado}" value="#{libro}" />
                     </p:commandButton>
                 </p:column>
 
             </p:dataTable>
 
+            <!-- Formulario de edición -->
+            <p:dialog header="Editar Libro" widgetVar="editDialog" resizable="false" modal="true" showEffect="fade" hideEffect="fade">
+                <h:panelGrid id="editForm" columns="2" cellpadding="5">
+                    <!-- Ajusta las propiedades del libro según tus necesidades -->
+                    <h:outputText value="Nombre:" />
+                    <p:inputText value="#{mainLibroBean.libroSeleccionado.nombre}" />
+
+                    <h:outputText value="Autor:" />
+                    <p:inputText value="#{mainLibroBean.libroSeleccionado.autor}" />
+
+                    <!-- Agrega más campos según las propiedades del libro que desees editar -->
+
+                    <!-- Botón Guardar -->
+                    <p:commandButton value="Guardar" action="#{mainLibroBean.onRowEdit}" update=":librosForm:growl :librosForm:librosTable" process="@this" styleClass="p-button-success"/>
+                </h:panelGrid>
+            </p:dialog>
+
+            <!-- Mensajes -->
+            <p:growl id="growl" showDetail="true" sticky="true" life="5000"/>
+
             <!-- Botones -->
             <div>
-                <p:commandButton value="Crear Usuario" action="#{mainUsuarioBean.redirigirFormulario}" icon="pi pi-plus"/>
-                <p:commandButton value="Generar Reporte" action="#{mainUsuarioBean.generarReportePDF}" icon="pi pi-file-pdf"/>
+                <!-- Botón Crear Libro -->
+                <p:commandButton value="Crear Libro" action="#{mainLibroBean.redirigirFormulario}" icon="pi pi-plus"
+                                 update=":librosForm" process="@this"/>
+                <!-- Botón Generar Reporte -->
+                <p:commandButton value="Generar Reporte" action="#{mainLibroBean.generarReportePDF}" icon="pi pi-file-pdf"
+                                 update=":librosForm:growl" process="@this"/>
             </div>
         </h:form>
     </div>
 </h:body>
 </html>
+
+
