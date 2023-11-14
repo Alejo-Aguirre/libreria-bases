@@ -25,8 +25,8 @@ public class ProductoServicioImpl implements ProductoServicio{
     }
 
     @Override
-    public Producto registrarProducto(Producto p) throws Exception {
-        Optional<Producto> buscado= productoRepo.findById(p.getCodigo());
+    public Libro registrarProducto(Libro p) throws Exception {
+        Optional<Libro> buscado= productoRepo.findById(p.getCodigo());
         if (buscado.isPresent()){
             throw new Exception("El codigo del producto ya existe");
         }
@@ -34,31 +34,18 @@ public class ProductoServicioImpl implements ProductoServicio{
         return productoRepo.save(p);
     }
 
-    @Override
-    public Producto publicarProductoVender(Producto p, Usuario u) throws Exception {
 
-        Optional<Producto> buscado= productoRepo.findById(p.getCodigo());
-        if (buscado.isPresent()){
-            throw new Exception("El codigo del producto ya existe");
-        }
-
-        p.setMiUsuario(u);
-        return productoRepo.save(p);
-
-
-
-    }
 
 
 
     @Override
-    public void actualizarProducto(Producto p) throws Exception {
+    public void actualizarProducto(Libro p) throws Exception {
 
     }
 
     @Override
     public void eliminarProducto(String codigo) throws Exception {
-        Optional<Producto> producto = productoRepo.findById(codigo);
+        Optional<Libro> producto = productoRepo.findById(codigo);
 
         if (producto.isEmpty()){
             throw new Exception("No existe ningun producto con ese codigo");
@@ -68,26 +55,26 @@ public class ProductoServicioImpl implements ProductoServicio{
     }
 
     @Override
-    public Producto obtenerProducto(String codigo) throws Exception {
+    public Libro obtenerProducto(String codigo) throws Exception {
         return productoRepo.findById(codigo).orElseThrow(()-> new Exception("el codigo del producto no es valido") );
     }
 
     @Override
-    public List<Producto> listarProductosPorCategoria(Categoria categoria) {
+    public List<Libro> listarProductosPorCategoria(Categoria categoria) {
         return productoRepo.listarPorCategoria(categoria);
     }
 
     @Override
-    public List<Producto> listarTodosProductos() throws Exception {
+    public List<Libro> listarTodosProductos() throws Exception {
         return productoRepo.findAll();
     }
 
     @Override
-    public void comentarProducto(String mensaje, Usuario usuario, Producto producto) throws Exception {
+    public void comentarProducto(String mensaje, Usuario usuario, Libro libro) throws Exception {
         LocalDate ld = LocalDate.now();
         Comentario comentario=new Comentario("32",mensaje,ld);
         comentario.setMiUsuario(usuario);
-        comentario.setMiProducto(producto);
+        comentario.setMiLibro(libro);
         try {
             comentarioRepo.save(comentario);
         }catch (Exception e ){
@@ -101,57 +88,57 @@ public class ProductoServicioImpl implements ProductoServicio{
     }
 
     @Override
-    public void guardarProductoEnFavoritos(Producto producto, Usuario usuario) throws Exception {
+    public void guardarProductoEnFavoritos(Libro libro, Usuario usuario) throws Exception {
 
-        if (producto==null || usuario==null){
+        if (libro ==null || usuario==null){
             throw new Exception("el producto o el usuario son nulos ");
         }
 
-        producto.getUsuariosFavoritos().add(usuario);
-        usuario.getProductosFavoritos().add(producto);
+        libro.getUsuariosFavoritos().add(usuario);
+        usuario.getProductosFavoritos().add(libro);
 
-        productoRepo.save(producto);
+        productoRepo.save(libro);
         usuarioRepo.save(usuario);
 
     }
 
     @Override
-    public void eliminarProductofavorito(Producto producto, Usuario usuario) throws Exception {
-        if (producto==null || usuario==null){
+    public void eliminarProductofavorito(Libro libro, Usuario usuario) throws Exception {
+        if (libro ==null || usuario==null){
             throw new Exception("el producto o el usuario son nulos ");
         }
 
-        producto.getUsuariosFavoritos().remove(usuario);
-        usuario.getProductosFavoritos().remove(producto);
+        libro.getUsuariosFavoritos().remove(usuario);
+        usuario.getProductosFavoritos().remove(libro);
 
-        productoRepo.save(producto);
+        productoRepo.save(libro);
         usuarioRepo.save(usuario);
 
     }
 
     @Override
-    public void comprarProductos(DetalleCompra detalleCompra, Producto producto) {
+    public void comprarProductos(DetalleCompra detalleCompra, Libro libro) {
 
     }
 
     @Override
-    public List<Producto> buscarProductoPorNombre(String nombre, String[] producto) {
+    public List<Libro> buscarProductoPorNombre(String nombre, String[] producto) {
 
         return productoRepo.buscarProductoNombre(nombre);
     }
 
     @Override
-    public List<Producto> buscarProducto(String nombre, String[] producto) {
+    public List<Libro> buscarProducto(String nombre, String[] producto) {
         return null;
     }
 
     @Override
-    public List<Producto> listarProductos(String codigoUsuario) throws Exception {
+    public List<Libro> listarProductos(String codigoUsuario) throws Exception {
         return null;
     }
 
     @Override
-    public List<Producto> obtenerProductosPorCategoria(String categoriaSeleccionada) {
+    public List<Libro> obtenerProductosPorCategoria(String categoriaSeleccionada) {
         return productoRepo.obtenerProductosPorCategoria(categoriaSeleccionada);
     }
 }

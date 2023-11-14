@@ -26,7 +26,7 @@ public class OpcionDetalleProducto {
     private String nombre;
 
     @ManyToOne
-   private DetalleDeProducto miDetalleDeProducto;
+   private DetalleDeLibro miDetalleDeLibro;
 
 
 }

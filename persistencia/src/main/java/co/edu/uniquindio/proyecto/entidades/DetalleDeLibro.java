@@ -26,7 +26,7 @@ public class DetalleDeProducto implements Serializable {
     private String nombre;
 
     @ManyToOne
-    private Producto miProducto;
+    private Libro miLibro;
 
     @OneToMany(mappedBy = "miDetalleDeProducto")
     private List<OpcionDetalleProducto>misOpcionesDetalleProductos;

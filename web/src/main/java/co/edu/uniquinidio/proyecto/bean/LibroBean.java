@@ -1,10 +1,9 @@
 package co.edu.uniquinidio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.entidades.Categoria;
-import co.edu.uniquindio.proyecto.entidades.Imagen;
-import co.edu.uniquindio.proyecto.entidades.Producto;
+import co.edu.uniquindio.proyecto.entidades.Libro;
 import co.edu.uniquindio.proyecto.servicios.CategoriaServicio;
-import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
+import co.edu.uniquindio.proyecto.servicios.LibroServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,13 +32,13 @@ import java.util.List;
 public class ProductoBean implements Serializable {
 
     @Getter @Setter
-    private Producto producto;
-    private List<Producto> productosPorCategoria;
+    private Libro libro;
+    private List<Libro> productosPorCategoria;
 
     @Getter @Setter
     private String codigoCategoriaSeleccionada;
     @Autowired
-    private ProductoServicio productoServicio;
+    private LibroServicio libroServicio;
 
     @Autowired
     private UsuarioServicio usuarioServicio;
@@ -54,7 +53,7 @@ public class ProductoBean implements Serializable {
 
     @PostConstruct
     public void inicializar(){
-        producto = new Producto();
+        libro = new Libro();
         this.imagenes = new ArrayList<>();
     }
 
@@ -66,14 +65,14 @@ public class ProductoBean implements Serializable {
 
             if(!imagenes.isEmpty()){
                 LocalDate ldn = LocalDate.now();
-                producto.setMiUsuario(usuarioServicio.obtenerUsuario("123"));
+                //libro.setMiUsuario(usuarioServicio.obtenerUsuario("123"));
                 // Obtener la categoría seleccionada por su código
                 Categoria categoriaSeleccionada = categoriaServicio.obtenerCategoria(codigoCategoriaSeleccionada);
-                producto.setMiCategoria(categoriaSeleccionada);
-                producto.setImagenes(imagenes);
-                producto.setFechaLimite(LocalDate.from(LocalDateTime.now().plusMonths(2)));
-                producto.setFechaCreacion(ldn);
-                productoServicio.registrarProducto(producto);
+                libro.setMiCategoria(categoriaSeleccionada);
+                libro.setImagenes(imagenes);
+                libro.setFechaLimite(LocalDate.from(LocalDateTime.now().plusMonths(2)));
+                libro.setFechaCreacion(ldn);
+                libroServicio.registrarProducto(libro);
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Alerta","La creacion del producto fue exitosa");
                 FacesContext.getCurrentInstance().addMessage(null,msg);
             }else {
@@ -117,7 +116,7 @@ public class ProductoBean implements Serializable {
         String categoriaSeleccionada = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("categoria");
 
         // Obtener los productos de la categoría seleccionada desde tu servicio o base de datos
-        productosPorCategoria = productoServicio.obtenerProductosPorCategoria(categoriaSeleccionada);
+        productosPorCategoria = libroServicio.obtenerProductosPorCategoria(categoriaSeleccionada);
     }
 
 

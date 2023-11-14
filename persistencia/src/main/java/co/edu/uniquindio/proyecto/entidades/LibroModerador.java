@@ -9,7 +9,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -32,7 +31,7 @@ public class ProductoModerador implements Serializable {
 
 
     @ManyToOne
-    private Producto miProducto;
+    private Libro miLibro;
 
     @ManyToOne
     private Estado miEstado;

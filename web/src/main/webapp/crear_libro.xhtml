@@ -29,27 +29,27 @@
                 </p:selectOneMenu>
 
                 <p:outputLabel value="Codigo" for="codigo_u"/>
-                <p:inputText id="codigo_u" value="#{productoBean.producto.codigo}" required="true"/>
+                <p:inputText id="codigo_u" value="#{productoBean.libro.codigo}" required="true"/>
 
                 <p:outputLabel value="Nombre" for="nombre_p"/>
-                <p:inputText id="nombre_p" value="#{productoBean.producto.nombre}" required="true"/>
+                <p:inputText id="nombre_p" value="#{productoBean.libro.nombre}" required="true"/>
 
 
                 <p:outputLabel value="Unidades" for="unidades_p"/>
-                <p:inputText id="unidades_p" value="#{productoBean.producto.unidades}" required="true" type="number"/>
+                <p:inputText id="unidades_p" value="#{productoBean.libro.unidades}" required="true" type="number"/>
 
                 <p:outputLabel value="Precio" for="precio_p"/>
-                <p:inputText id="precio_p" value="#{productoBean.producto.precio}" required="false" type="number"/>
+                <p:inputText id="precio_p" value="#{productoBean.libro.precio}" required="false" type="number"/>
 
                 <p:outputLabel value="Descripcion" for="descripcion_p"/>
-                <p:textEditor id="descripcion_p" value="#{productoBean.producto.descripcion}" height="200" secure="false"/>
+                <p:textEditor id="descripcion_p" value="#{productoBean.libro.descripcion}" height="200" secure="false"/>
 
                 <p:outputLabel for="imagen" value="Cargar imagenes :"/>
                 <p:fileUpload id="imagen" listener="#{productoBean.subirImagenes}" mode="advanced" multiple="true" sizeLimit="1000000" fileLimit="5" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true"
                               label="Seleccionar archivo"/>
 
                 <h:outputText styleClass="center-button" colspan="2"/>
-                <p:commandButton value="Crear producto" action="#{productoBean.crearProducto()}" update="@form" icon="pi pi-user-plus"
+                <p:commandButton value="Crear libro" action="#{productoBean.crearProducto()}" update="@form" icon="pi pi-user-plus"
                                  styleClass="center-button"/>
             </h:panelGrid>
 
