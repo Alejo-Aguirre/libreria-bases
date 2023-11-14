@@ -8,8 +8,6 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Positive;
 import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
@@ -34,7 +32,7 @@ public class DetalleCompra implements Serializable {
     private Compra miCompra;
 
     @ManyToOne
-    private Producto miProducto;
+    private Libro miLibro;
 
 
 }

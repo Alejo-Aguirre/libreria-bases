@@ -7,54 +7,42 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
-public interface ProductoRepo extends JpaRepository<Libro,String>{
-
-    @Query("select p.miUsuario.nombre from Libro p where p.codigo = :codigo")
-    String obtenerNombreDelVendedor(String codigo);
+public interface LibroRepo extends JpaRepository<Libro,String>{
 
 
     //left join nos muestra la relacion de el usuario y los comentario para saber que usuario tiene comentario o que ususario tiene los comentarios en null
-    @Query("select p.nombre,c.mensaje from Libro p left join p.miComentario c")
-    List<Object[]> listarUsuariosYProductos();
+    @Query("select l.nombre,c.mensaje from Libro l left join l.miComentario c")
+    List<Object[]> listarUsuariosYLibros();
 
 
     //usuarios que han comentado un producto especifico
     //de un producto se trae la informacion del usuario pero del usuario necesita
 
-    @Query("select p.miUsuario from Libro p  join p.miComentario c where p.codigo = :codigo ")
-    List<Usuario> listarUsuariosQueComentaronProducto(String codigo);
-
-
-    @Query("SELECT p FROM Libro p WHERE :categoria = p.miCategoria")
+    @Query("SELECT l FROM Libro l WHERE :categoria = l.miCategoria")
     List<Libro> listarPorCategoria(@Param("categoria") Categoria categoria);
 
 
-    @Query("SELECT p.codigo, p.nombre, COUNT(c.mensaje) FROM Libro p LEFT JOIN p.miComentario c GROUP BY p.codigo, p.nombre ORDER BY COUNT(c.mensaje) DESC")
-    List<Object[]> listarProductosConMasComentarios();
+    @Query("SELECT l.codigo, l.nombre, COUNT(c.mensaje) FROM Libro l LEFT JOIN l.miComentario c GROUP BY l.codigo, l.nombre ORDER BY COUNT(c.mensaje) DESC")
+    List<Object[]> listarLibrosConMasComentarios();
 
-
-    @Query("select p.miUsuario from Libro p where p.codigo = :codigo")
-    Optional<Usuario> obtenerPropietarioProducto(String codigo);
-
-    @Query(value = "SELECT p.codigo, p.nombre, COUNT(f.codigo) AS cantidadFavoritos " +
-            "FROM Libro p " +
-            "LEFT JOIN p.usuariosFavoritos f " +
-            "GROUP BY p.codigo, p.nombre " +
+    @Query(value = "SELECT l.codigo, l.nombre, COUNT(f.codigo) AS cantidadFavoritos " +
+            "FROM Libro l " +
+            "LEFT JOIN l.usuariosFavoritos f " +
+            "GROUP BY l.codigo, l.nombre " +
             "ORDER BY cantidadFavoritos DESC")
-    List<Object[]> listarProductosMasAgregadosFavoritos();
+    List<Object[]> listarLibrosMasAgregadosFavoritos();
 
-    @Query("select u from Libro  p, IN (p.usuariosFavoritos) u where p.codigo = :codigo")
+    @Query("select u from Libro  l, IN (l.usuariosFavoritos) u where l.codigo = :codigo")
     List<Usuario> obtenerUsuariosFavoritosPorCodigo(String codigo);
 
-    @Query("select p from Libro p where p.nombre like concat('%',:nombre,'%')")
-    List<Libro> buscarProductoNombre(String nombre);
+    @Query("select l from Libro l where l.nombre like concat('%',:nombre,'%')")
+    List<Libro> buscarLibroNombre(String nombre);
 
 
-    @Query("SELECT p FROM Libro p WHERE p.miCategoria.nombre = :categoria")
-    List<Libro> obtenerProductosPorCategoria(@Param("categoria") String categoria);
+    @Query("SELECT l FROM Libro l WHERE l.miCategoria.nombre = :categoria")
+    List<Libro> obtenerLibrosPorCategoria(@Param("categoria") String categoria);
 
 
 

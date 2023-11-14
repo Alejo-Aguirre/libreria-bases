@@ -1,7 +1,7 @@
 package co.edu.uniquinidio.proyecto.bean;
 
-import co.edu.uniquindio.proyecto.entidades.Producto;
-import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
+import co.edu.uniquindio.proyecto.entidades.Libro;
+import co.edu.uniquindio.proyecto.servicios.LibroServicio;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,14 +25,14 @@ public class BusquedaBean implements Serializable {
     private String busquedaParam;
 
     @Getter @Setter
-    private List<Producto> productos;
+    private List<Libro> libros;
 
     @Autowired
-    private ProductoServicio productoServicio;
+    private LibroServicio libroServicio;
     @PostConstruct
     public void inicializar(){
         if(busquedaParam!=null && !busquedaParam.isEmpty()){
-            productos=productoServicio.buscarProductoPorNombre(busquedaParam,null);
+            libros = libroServicio.buscarLibroPorNombre(busquedaParam,null);
         }
 
     }

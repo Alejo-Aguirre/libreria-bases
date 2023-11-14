@@ -19,37 +19,39 @@
     </style>
 </h:head>
 <h:body>
-    <p:panel header="Crear Producto">
+    <p:panel header="Crear Libro">
         <h:form>
             <h:panelGrid columns="2" cellpadding="5">
                 <p:outputLabel value="Seleccione la categoría" for="categoria_p"/>
-                <p:selectOneMenu id="categoria_p" value="#{productoBean.codigoCategoriaSeleccionada}">
+                <p:selectOneMenu id="categoria_p" value="#{libroBean.codigoCategoriaSeleccionada}">
                     <f:selectItem itemLabel="Seleccionar" itemValue=""/>
-                    <f:selectItems value="#{productoBean.categorias}" var="categoria" itemValue="#{categoria.codigo}" itemLabel="#{categoria.nombre}"/>
+                    <f:selectItems value="#{libroBean.categorias}" var="categoria" itemValue="#{categoria.codigo}" itemLabel="#{categoria.nombre}"/>
                 </p:selectOneMenu>
 
                 <p:outputLabel value="Codigo" for="codigo_u"/>
-                <p:inputText id="codigo_u" value="#{productoBean.libro.codigo}" required="true"/>
+                <p:inputText id="codigo_u" value="#{libroBean.libro.codigo}" required="true"/>
 
                 <p:outputLabel value="Nombre" for="nombre_p"/>
-                <p:inputText id="nombre_p" value="#{productoBean.libro.nombre}" required="true"/>
+                <p:inputText id="nombre_p" value="#{libroBean.libro.nombre}" required="true"/>
 
+                <p:outputLabel value="Autor" for="autor_u"/>
+                <p:inputText id="autor_u" value="#{libroBean.libro.autor}" required="true"/>
 
                 <p:outputLabel value="Unidades" for="unidades_p"/>
-                <p:inputText id="unidades_p" value="#{productoBean.libro.unidades}" required="true" type="number"/>
+                <p:inputText id="unidades_p" value="#{libroBean.libro.unidades}" required="true" type="number"/>
 
                 <p:outputLabel value="Precio" for="precio_p"/>
-                <p:inputText id="precio_p" value="#{productoBean.libro.precio}" required="false" type="number"/>
+                <p:inputText id="precio_p" value="#{libroBean.libro.precio}" required="false" type="number"/>
 
                 <p:outputLabel value="Descripcion" for="descripcion_p"/>
-                <p:textEditor id="descripcion_p" value="#{productoBean.libro.descripcion}" height="200" secure="false"/>
+                <p:textEditor id="descripcion_p" value="#{libroBean.libro.descripcion}" height="200" secure="false"/>
 
                 <p:outputLabel for="imagen" value="Cargar imagenes :"/>
-                <p:fileUpload id="imagen" listener="#{productoBean.subirImagenes}" mode="advanced" multiple="true" sizeLimit="1000000" fileLimit="5" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true"
+                <p:fileUpload id="imagen" listener="#{libroBean.subirImagenes}" mode="advanced" multiple="true" sizeLimit="1000000" fileLimit="5" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" required="true"
                               label="Seleccionar archivo"/>
 
                 <h:outputText styleClass="center-button" colspan="2"/>
-                <p:commandButton value="Crear libro" action="#{productoBean.crearProducto()}" update="@form" icon="pi pi-user-plus"
+                <p:commandButton value="Crear libro" action="#{libroBean.crearLibro()}" update="@form" icon="pi pi-user-plus"
                                  styleClass="center-button"/>
             </h:panelGrid>
 

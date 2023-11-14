@@ -25,7 +25,7 @@ public class Estado implements Serializable {
     private String nombre;
 
     @OneToMany(mappedBy = "miEstado")
-    private List<ProductoModerador> misProductosModerador;
+    private List<LibroModerador> misProductosModerador;
 
 
 }

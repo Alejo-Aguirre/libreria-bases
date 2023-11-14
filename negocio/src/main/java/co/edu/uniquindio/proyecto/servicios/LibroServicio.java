@@ -4,29 +4,33 @@ import co.edu.uniquindio.proyecto.entidades.*;
 
 import java.util.List;
 
-public interface ProductoServicio {
+public interface LibroServicio {
 
-    Libro registrarProducto(Libro p) throws Exception;
-    void actualizarProducto(Libro p) throws Exception;
+    Libro registrarLibro(Libro p) throws Exception;
 
-    void eliminarProducto(String codigo) throws Exception;
+    void actualizarLibro(Libro p) throws Exception;
 
-    Libro obtenerProducto(String codigo) throws Exception;
-    List<Libro> listarProductosPorCategoria(Categoria categoria);
-    List<Libro> listarTodosProductos()throws Exception;
+
+    void eliminarLibro(String codigo) throws Exception;
+
+
+    Libro obtenerLibro(String codigo) throws Exception;
+
+    List<Libro> listarLibroPorCategoria(Categoria categoria);
+    List<Libro> listarTodosLibros()throws Exception;
 
     void comentarProducto(String mensaje, Usuario usuario, Libro libro) throws Exception;
 
-    void guardarProductoEnFavoritos(Libro libro, Usuario usuario) throws Exception;
-    void eliminarProductofavorito(Libro libro, Usuario usuario)throws Exception;
-    void comprarProductos(DetalleCompra detalleCompra, Libro libro);
+    void guardarLibroEnFavoritos(Libro libro, Usuario usuario) throws Exception;
+    void eliminarLibrofavorito(Libro libro, Usuario usuario)throws Exception;
+    void comprarLibros(DetalleCompra detalleCompra, Libro libro);
 
-    List<Libro> buscarProductoPorNombre(String nombre, String [] producto);
+    List<Libro> buscarLibroPorNombre(String nombre, String [] producto);
 
-    List<Libro> buscarProducto(String nombre, String[] producto);
+    List<Libro> buscarLibro(String nombre, String[] producto);
 
-    List<Libro> listarProductos(String codigoUsuario)throws Exception;
+    List<Libro> listarLibros(String codigoUsuario)throws Exception;
 
 
-    List<Libro> obtenerProductosPorCategoria(String categoriaSeleccionada);
+    List<Libro> obtenerLibrosPorCategoria(String categoriaSeleccionada);
 }

@@ -14,12 +14,12 @@ insert into sub_categoria values ("21","motos","302");
 insert into sub_categoria values ("22","carros","302");
 insert into sub_categoria values ("23","zapatos","301");
 
-insert into producto values ("1","celular 10 de 10","2023-10-23","2023-10-25","celular",200000,4,"301","904");
-insert into producto values ("2","moto con el moto en perfecto estado","2021-10-23","2022-10-25","moto",400000,4,"302","904");
-insert into producto values ("3","carro con 20.000 kilometros","2021-10-23","2022-10-25","carro",32,4,"302","905");
-insert into producto values ("4","casa de 4 habitaciones","2021-10-23","2022-10-25","vivienda",32,4,"305","905");
-insert into producto values ("5","bicicleta BMW","2020-10-23","2021-10-25","bicicleta",32,4,"302","906");
-insert into producto values ("6","Televisor de 50 pulgadas smart tv","2023-03-01","2023-10-25","televisor",32,4,"304","906");
+insert into libro values ("1","celular 10 de 10","2023-10-23","2023-10-25","celular",200000,4,"301","904");
+insert into libro values ("2","moto con el moto en perfecto estado","2021-10-23","2022-10-25","moto",400000,4,"302","904");
+insert into libro values ("3","carro con 20.000 kilometros","2021-10-23","2022-10-25","carro",32,4,"302","905");
+insert into libro values ("4","casa de 4 habitaciones","2021-10-23","2022-10-25","vivienda",32,4,"305","905");
+insert into libro values ("5","bicicleta BMW","2020-10-23","2021-10-25","bicicleta",32,4,"302","906");
+insert into libro values ("6","Televisor de 50 pulgadas smart tv","2023-03-01","2023-10-25","televisor",32,4,"304","906");
 
 insert into usuario_productos_favoritos values ("908","1");
 insert into usuario_productos_favoritos values ("908","2");

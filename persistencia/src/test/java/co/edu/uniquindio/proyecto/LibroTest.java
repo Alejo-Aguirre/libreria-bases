@@ -1,8 +1,8 @@
 package co.edu.uniquindio.proyecto;
 
-import co.edu.uniquindio.proyecto.entidades.Producto;
+import co.edu.uniquindio.proyecto.entidades.Libro;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
-import co.edu.uniquindio.proyecto.repositorios.ProductoRepo;
+import co.edu.uniquindio.proyecto.repositorios.LibroRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,39 +13,33 @@ import org.springframework.test.context.jdbc.Sql;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class ProductoTest {
+public class LibroTest {
     @Autowired
-    private ProductoRepo productoRepo;
+    private LibroRepo libroRepo;
 
 
     //------------------------------CONSULTAS----------------------------------------------------------
     @Test
     @Sql("classpath:usuarios.sql")
-    public void listarProductos(){
+    public void listarLibros(){
 
 
-        List<Producto> misProductos = productoRepo.findAll();
-        System.out.println(misProductos);
+        List<Libro> misLibros = libroRepo.findAll();
+        System.out.println(misLibros);
     }
 
-    @Test
-    @Sql("classpath:usuarios.sql")
-    public void buscarNombreDeVendedorPorCodigo(){
-        String nombre = productoRepo.obtenerNombreDelVendedor("1");
-        System.out.println(nombre);
-    }
+
 
     @Test
     @Sql("classpath:usuarios.sql")
     public void listarProductosYComentarios(){
 
 
-        List<Object[]> respuesta= productoRepo.listarUsuariosYProductos();
+        List<Object[]> respuesta= libroRepo.listarUsuariosYLibros();
 
         for (Object[] objeto:respuesta){
             System.out.println(objeto[0]+"-----"+objeto[1]);
@@ -53,12 +47,7 @@ public class ProductoTest {
 
     }
 
-    @Test
-    @Sql("classpath:usuarios.sql")
-    public void listarUsuariosQueHanComentadoUnProducto(){
-        List<Usuario> respuesta= productoRepo.listarUsuariosQueComentaronProducto("1");
-        respuesta.forEach(u -> System.out.println(u));
-    }
+
 
     @Test
     @Sql("classpath:usuarios.sql")
@@ -74,7 +63,7 @@ public class ProductoTest {
     @Test
     @Sql("classpath:usuarios.sql")
     public void listarProductosConMasComentarios() {
-        List<Object[]> resultado = productoRepo.listarProductosConMasComentarios();
+        List<Object[]> resultado = libroRepo.listarLibrosConMasComentarios();
         for (Object[] row : resultado) {
             String productoId = (String) row[0];
             String nombreProducto = (String) row[1];
@@ -86,7 +75,7 @@ public class ProductoTest {
     @Test
     @Sql("classpath:usuarios.sql")
     public void listarProductosMasAgregadosFavoritos() {
-        List<Object[]> resultado = productoRepo.listarProductosMasAgregadosFavoritos();
+        List<Object[]> resultado = libroRepo.listarLibrosMasAgregadosFavoritos();
         Assertions.assertNotNull(resultado);
         Assertions.assertFalse(resultado.isEmpty());
         for (Object[] row : resultado) {
@@ -97,14 +86,6 @@ public class ProductoTest {
         }
     }
 
-    @Test
-    @Sql("classpath:usuarios.sql")
-    public void obtenerPropietarioProductoTest() {
-
-        Optional<Usuario> u=productoRepo.obtenerPropietarioProducto("1");
-        System.out.println(u.get().getNombre());
-
-    }
 
     /**
      * @Autor Escanor
@@ -119,7 +100,7 @@ public class ProductoTest {
     @Test
     @Sql("classpath:usuarios.sql")
     public void obtenerUsuariosFavoritosPorCodigoTest(){
-        List<Usuario> usuarios= productoRepo.obtenerUsuariosFavoritosPorCodigo("1");
+        List<Usuario> usuarios= libroRepo.obtenerUsuariosFavoritosPorCodigo("1");
         Assertions.assertEquals(1,usuarios.size());
 
     }

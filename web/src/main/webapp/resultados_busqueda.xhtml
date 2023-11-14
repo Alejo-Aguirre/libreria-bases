@@ -13,6 +13,51 @@
     <title>Resultados de busqueda</title>
 </h:head>
 <h:body>
- <p>#{busquedaBean.productos}</p>
+
+    <div class="container mt-5">
+        <h4>Libros</h4>
+        <h:form>
+            <p:dataView value="#{busqueda.libros}" var="libro" gridIcon="pi pi-th-large" listIcon="pi pi-bars" paginator="true" rows="9">
+                <p:dataViewGridItem>
+                    <div class="card">
+                        <img src="/uploads/#{libro.imagenPrincipal}" class="card-img-top" alt="..." style="max-height: 650px; object-fit: cover;"/>
+                        <div class="card-body">
+                            <h5 class="card-title">#{libro.nombre}</h5>
+                            <p class="card-text">Precio: #{libro.precio}</p>
+                            <p class="card-text">Categoria: #{libro.miCategoria.nombre}</p>
+                            <hr/>
+                            <p:commandButton value="Ver detalle" styleClass="ui-button-raised" icon="pi pi-arrow-right" iconPos="right"/>
+                        </div>
+                        <div class="card-footer">
+                            <span class="badge bg-primary">#{libro.categoria}</span>
+                        </div>
+                    </div>
+                </p:dataViewGridItem>
+
+                <p:dataViewListItem>
+                    <div class="row align-items-center">
+                        <div class="col-lg-2 col-md-2 text-center">
+                            <p:graphicImage url="/uploads/#{libro.imagenPrincipal}" styleClass="imagen-libro" style="max-height: 150px; object-fit: cover;"/>
+                        </div>
+                        <div class="col-lg-8 col-md-10">
+                            <p:outputPanel>
+                                <h:panelGrid columns="2" columnClasses="fw-bold,text-end">
+                                    <h:outputText value="Nombre:"/>
+                                    <h:outputText value="#{libro.nombre}"/>
+
+                                    <h:outputText value="Precio:"/>
+                                    <h:outputText value="#{libro.precio}"/>
+
+                                    <h:outputText value="Categoría:" />
+                                    <h:outputText value="#{libro.miCategoria.nombre}" styleClass="text-primary"/>
+                                </h:panelGrid>
+                            </p:outputPanel>
+                            <p:commandButton value="Ver detalle" styleClass="ui-button-raised mt-2" icon="pi pi-arrow-right" iconPos="right"/>
+                        </div>
+                    </div>
+                </p:dataViewListItem>
+            </p:dataView>
+        </h:form>
+    </div>
 </h:body>
 </html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Main Libro</title>
+</h:head>
+
+<h:body>
+    <div class="container mt-5">
+        <h4>Libros</h4>
+        <h:form>
+            <!-- Tabla de Libros -->
+            <p:dataTable id="librosTable" var="libro" value="#{mainLibroBean.libros}" paginator="true" rows="10">
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{libro.nombre}"/>
+                </p:column>
+                <p:column headerText="Precio">
+                    <h:outputText value="#{libro.precio}"/>
+                </p:column>
+                <p:column headerText="Categoría">
+                    <h:outputText value="#{libro.miCategoria.nombre}"/>
+                </p:column>
+                <p:column headerText="Acciones">
+                    <!-- Botones de Acciones -->
+                    <p:commandButton value="Actualizar" action="#{mainLibroBean.actualizarLibro(libro)}"/>
+                    <p:commandButton value="Eliminar" action="#{mainLibroBean.eliminarLibro(libro)}"/>
+                </p:column>
+            </p:dataTable>
+
+            <!-- Botones -->
+            <div>
+                <p:commandButton value="Crear Libro" action="#{mainLibroBean.redirigirFormulario}" icon="pi pi-plus"/>
+                <p:commandButton value="Generar Reporte" action="#{mainLibroBean.generarReportePDF}" icon="pi pi-file-pdf"/>
+            </div>
+        </h:form>
+    </div>
+</h:body>
+</html>
+

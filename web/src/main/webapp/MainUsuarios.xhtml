@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Main Usuario</title>
+</h:head>
+
+<h:body>
+    <div class="container mt-5">
+        <h4>Usuarios</h4>
+        <h:form>
+            <!-- Tabla de Usuarios -->
+            <p:dataTable id="usuariosTable" var="usuario" value="#{mainUsuarioBean.usuarios}" paginator="true" rows="10">
+                <p:column headerText="Codigo">
+                    <h:outputText value="#{usuario.codigo}"/>
+                </p:column>
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{usuario.nombre}"/>
+                </p:column>
+                <p:column headerText="Correo">
+                    <h:outputText value="#{usuario.email}"/>
+                </p:column>
+                <p:column headerText="Direccion">
+                    <h:outputText value="#{usuario.direccion}"/>
+                </p:column>
+                <p:column headerText="Username">
+                    <h:outputText value="#{usuario.username}"/>
+                </p:column>
+                <p:column headerText="Password">
+                    <h:outputText value="#{usuario.password}"/>
+                </p:column>
+                <p:column headerText="Acciones">
+                    <!-- Botones de Acciones -->
+                    <p:commandButton value="Actualizar" action="#{mainUsuarioBean.actualizarUsuario(usuario)}"/>
+                    <p:commandButton value="Eliminar" action="#{mainUsuarioBean.eliminarUsuario(usuario.codigo)}">
+                        <p:ajax update="usuariosTable"/>
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+
+            <!-- Botones -->
+            <div>
+                <p:commandButton value="Crear Usuario" action="#{mainUsuarioBean.redirigirFormulario}" icon="pi pi-plus"/>
+                <p:commandButton value="Generar Reporte" action="#{mainUsuarioBean.generarReportePDF}" icon="pi pi-file-pdf"/>
+            </div>
+        </h:form>
+    </div>
+</h:body>
+</html>

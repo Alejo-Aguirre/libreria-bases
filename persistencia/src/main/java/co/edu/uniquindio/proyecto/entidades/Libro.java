@@ -7,7 +7,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -16,16 +15,19 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @ToString
-public class Producto implements Serializable {
+public class Libro implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include
     private String codigo;
 
-
     @NotBlank(message = "El nombre del producto es obligatorio")
     @Column(nullable = false,length = 100)
     private String nombre;
+
+    @NotBlank(message = "El nombre del autor es obligatorio")
+    @Column(nullable = false,length = 100)
+    private String autor;
 
     @NotBlank
     @Column(nullable = false)
@@ -38,18 +40,10 @@ public class Producto implements Serializable {
     @Column(nullable = false)
     private LocalDate fechaCreacion;
 
-    @Future
-    @Column(nullable = false)
-    private LocalDate fechaLimite;
-
     @PositiveOrZero
     @Column(nullable = false)
     private Integer unidades;
 
-    @ToString.Exclude
-    @ManyToOne
-    private Usuario miUsuario;
-    //entidad propietaria
 
     @ElementCollection
     private List<String> imagenes;
@@ -61,15 +55,17 @@ public class Producto implements Serializable {
 
 
     //datos que se necesitan para crear un producto
-    public Producto(String codigo, String nombre, String descripcion, float precio, LocalDate fechaCreacion, LocalDate fechaLimite, Integer unidades) {
+
+    public Libro(String codigo, String nombre, String autor, String descripcion, float precio, LocalDate fechaCreacion, Integer unidades) {
         this.codigo = codigo;
         this.nombre = nombre;
+        this.autor = autor;
         this.descripcion = descripcion;
         this.precio = precio;
         this.fechaCreacion = fechaCreacion;
-        this.fechaLimite = fechaLimite;
         this.unidades = unidades;
     }
+
     public String getImagenPrincipal(){
         if(imagenes != null && !imagenes.isEmpty()){
             return imagenes.get(0);
@@ -80,27 +76,27 @@ public class Producto implements Serializable {
     //entidad Propietaria es el producto porque para hacer un producto necesitamos una categoria
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "miProducto")
+    @OneToMany(mappedBy = "miLibro")
     private List<Comentario> miComentario;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "miProducto")
+    @OneToMany(mappedBy = "miLibro")
     private List<DetalleCompra> misDetalleCompras;
 
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "miProducto")
-    private List<DetalleDeProducto> misDetalleProductos;
+    @OneToMany(mappedBy = "miLibro")
+    private List<DetalleDeLibro> misDetalleLibros;
 
     @ToString.Exclude
-    @OneToMany(mappedBy = "miProducto")
-    private List<ProductoModerador> misProductosModerador;
+    @OneToMany(mappedBy = "miLibro")
+    private List<LibroModerador> misLibrosModerador;
 
 
     //estos son los usuarios que tienen el producto en favoritos
     //entidad inversa entre usuario y producto
     @ToString.Exclude
-    @ManyToMany(mappedBy = "productosFavoritos")
+    @ManyToMany(mappedBy = "librosFavoritos")
     private List<Usuario> usuariosFavoritos;
 
 //se debe crear la relacion con el moderador

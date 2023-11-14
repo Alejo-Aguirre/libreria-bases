@@ -1,7 +1,6 @@
 package co.edu.uniquindio.proyecto.entidades;
 
 import lombok.*;
-import net.bytebuddy.implementation.bind.annotation.Empty;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,7 +26,7 @@ public class Categoria implements Serializable {
     private String nombre;
 
     @OneToMany(mappedBy = "miCategoria")
-    private List<Producto> misProductos;
+    private List<Libro> misLibros;
     //entidad  inversa
 
     @OneToMany(mappedBy = "miCategoria")

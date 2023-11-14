@@ -15,7 +15,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @NoArgsConstructor
-public class ProductoModerador implements Serializable {
+public class LibroModerador implements Serializable {
 
     @Id
     @EqualsAndHashCode.Include

@@ -20,8 +20,4 @@ public interface UsuarioServicio {
     Usuario obtenerPropietarioProducto(String codigoProducto);
 
 
-
-
-
-
 }

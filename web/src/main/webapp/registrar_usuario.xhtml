@@ -85,7 +85,7 @@
                         <p:inputText id="nombre_u" value="#{usuarioBean.usuario.nombre}" required="true"/>
                     </div>
                 </div>
-                
+
                 <div class="ui-g">
                     <div class="ui-g-4">
                         <h:outputLabel value="Email" for="email_u" styleClass="input-label"/>
@@ -135,6 +135,7 @@
             <p:growl id="growl" showDetail="true" sticky="true" life="5000"/>
             <p:commandButton value="Registrar Usuario" action="#{usuarioBean.registrarUsuario()}" update="@form"
                              icon="pi pi-user-plus" styleClass="command-button"/>
+
         </p:panel>
     </h:form>
 </h:body>

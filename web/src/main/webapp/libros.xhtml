@@ -13,12 +13,12 @@
         <!-- Dropdown de categorías -->
         <p:selectOneMenu value="#{categoriaBean.categoriaSeleccionada}">
             <f:selectItems value="#{categoriaBean.categorias}" var="categoria" itemLabel="#{categoria.nombre}" itemValue="#{categoria.nombre}" />
-            <p:ajax listener="#{productoBean.obtenerProductosPorCategoria}" update="libros" />
+            <p:ajax listener="#{libroBean.obtenerProductosPorCategoria}" update="libros" />
         </p:selectOneMenu>
 
         <!-- Lista de libros -->
         <h:panelGroup id="libros">
-            <ui:repeat value="#{productoBean.productosPorCategoria}" var="libro">
+            <ui:repeat value="#{libroBean.productosPorCategoria}" var="libro">
                 <!-- Mostrar información del libro -->
                 <p>Nombre: #{libro.nombre}</p>
                 <p>Precio: #{libro.precio}</p>

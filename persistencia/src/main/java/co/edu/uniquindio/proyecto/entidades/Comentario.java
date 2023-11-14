@@ -8,7 +8,6 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Getter
@@ -31,7 +30,7 @@ public class Comentario implements Serializable {
 
     @ToString.Exclude
     @ManyToOne
-    private Producto miProducto;
+    private Libro miLibro;
     //entidad propietaria
 
     @ToString.Exclude

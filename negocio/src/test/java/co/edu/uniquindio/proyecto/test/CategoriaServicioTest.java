@@ -24,10 +24,10 @@ public class CategoriaServicioTest {
 
     @Test
     public void registrarcategoria () {
-        Categoria cat1= new Categoria("301","Vehiculos");
-        Categoria cat2= new Categoria("302","Celulares");
-        Categoria cat3= new Categoria("303","Joyas");
-        Categoria cat4= new Categoria("304","Computadores");
+        Categoria cat1= new Categoria("301","Terror");
+        Categoria cat2= new Categoria("302","Misterio");
+        Categoria cat3= new Categoria("303","juvenil");
+        Categoria cat4= new Categoria("304","suspenso");
 
         try {
             categoriaServicio.registrarCategoria(cat1);

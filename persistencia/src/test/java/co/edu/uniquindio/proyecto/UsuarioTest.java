@@ -3,7 +3,7 @@ package co.edu.uniquindio.proyecto;
 
 import co.edu.uniquindio.proyecto.entidades.Categoria;
 import co.edu.uniquindio.proyecto.entidades.Comentario;
-import co.edu.uniquindio.proyecto.entidades.Producto;
+import co.edu.uniquindio.proyecto.entidades.Libro;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.repositorios.CategoriaRepo;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
@@ -18,7 +18,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.test.context.jdbc.Sql;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -160,35 +159,7 @@ public class UsuarioTest {
     }
 
 
-    @Test
-    @Sql("classpath:usuarios.sql")
-    public void listarProductosDeUnUsuario(){
 
-
-        List<Producto>misProductos = usuarioRepo.obtenerProductosUsuarioPorCodigo("904");
-        out.println(misProductos);
-
-    }
-
-    @Test
-    @Sql("classpath:usuarios.sql")
-    public void obtenerFavoritos(){
-        List<Producto>misProductos = usuarioRepo.obtenerFavoritosPorCorreo("lian@gmail.com");
-        misProductos.forEach(out::println);
-        //Assertions.assertEquals(2,misProductos.size());
-
-    }
-
-    @Test
-    @Sql("classpath:usuarios.sql")
-    public void obtenerProductosPublicados(){
-
-
-        List<Producto>misProductos = usuarioRepo.obtenerProductosUsuarioPorCodigoj("904");
-
-        Assertions.assertEquals(2,misProductos.size());
-
-    }
 
     @Test
     @Sql("classpath:usuarios.sql")
@@ -200,18 +171,7 @@ public class UsuarioTest {
 
     }
 
-    @Test
-    @Sql("classpath:usuarios.sql")
-    public void listarUsuarioProductoTest(){
 
-
-        List<Object[]> respuesta= usuarioRepo.listarUsuariosYProductos();
-
-       for (Object[] objeto:respuesta){
-           out.println(objeto[0]+"-----"+objeto[1]);
-       }
-
-    }
 
     @Test
     @Sql("classpath:usuarios.sql")
@@ -246,13 +206,7 @@ public class UsuarioTest {
 
     }
 
-    @Test
-    @Sql("classpath:usuarios.sql")
-    public void obtenerFavoritosPorCodigoTest(){
-        List<Producto>  favoritos= usuarioRepo.obtenerFavoritosPorCodigo("904");
-        Assertions.assertEquals(0,favoritos.size());
 
-    }
 
 
 

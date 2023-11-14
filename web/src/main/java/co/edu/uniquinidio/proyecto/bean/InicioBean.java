@@ -1,7 +1,7 @@
 package co.edu.uniquinidio.proyecto.bean;
 
-import co.edu.uniquindio.proyecto.entidades.Producto;
-import co.edu.uniquindio.proyecto.servicios.ProductoServicio;
+import co.edu.uniquindio.proyecto.entidades.Libro;
+import co.edu.uniquindio.proyecto.servicios.LibroServicio;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,18 +17,18 @@ import java.util.List;
 public class InicioBean implements Serializable {
 
     @Autowired
-    private ProductoServicio productoServicio;
+    private LibroServicio libroServicio;
 
     @Getter
     @Setter
-    private List<Producto> productos;
+    private List<Libro> libros;
 
 
     @PostConstruct
     public void inicializar()
     {
         try {
-            this.productos = productoServicio.listarTodosProductos();
+            this.libros = libroServicio.listarTodosLibros();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

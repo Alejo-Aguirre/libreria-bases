@@ -5,7 +5,6 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.List;
 
@@ -23,15 +22,9 @@ public class Usuario extends Persona implements Serializable {
     private String telefono;
 
 
-     @ToString.Exclude
-     @OneToMany(mappedBy = "miUsuario")
-     private List<Producto> misProductos ;
-     //entidad inversa
-
-
      //entidad propietaria entre usuario producto
     @ManyToMany
-     private List<Producto> productosFavoritos;
+     private List<Libro> librosFavoritos;
 
      @ToString.Exclude
      @OneToMany(mappedBy = "miUsuario")

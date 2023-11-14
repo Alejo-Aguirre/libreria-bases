@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
 @Getter
 @Setter
 @NoArgsConstructor
-public class OpcionDetalleProducto {
+public class OpcionDetalleLibro {
 
     @Id
     @EqualsAndHashCode.Include

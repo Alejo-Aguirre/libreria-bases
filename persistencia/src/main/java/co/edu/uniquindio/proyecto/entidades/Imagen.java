@@ -26,7 +26,7 @@ public class Imagen implements Serializable {
     private String ruta;
 
     @ManyToOne
-    private Producto miProducto;
+    private Libro miLibro;
 
 
 }

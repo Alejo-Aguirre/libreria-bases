@@ -4,7 +4,6 @@ import co.edu.uniquindio.proyecto.entidades.Categoria;
 import co.edu.uniquindio.proyecto.entidades.Libro;
 import co.edu.uniquindio.proyecto.servicios.CategoriaServicio;
 import co.edu.uniquindio.proyecto.servicios.LibroServicio;
-import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.commons.io.IOUtils;
@@ -29,19 +28,16 @@ import java.util.List;
 
 @Component
 @ViewScoped
-public class ProductoBean implements Serializable {
+public class LibroBean implements Serializable {
 
     @Getter @Setter
     private Libro libro;
-    private List<Libro> productosPorCategoria;
+    private List<Libro> librosPorCategoria;
 
     @Getter @Setter
     private String codigoCategoriaSeleccionada;
     @Autowired
     private LibroServicio libroServicio;
-
-    @Autowired
-    private UsuarioServicio usuarioServicio;
 
     private ArrayList<String> imagenes ;
 
@@ -60,19 +56,17 @@ public class ProductoBean implements Serializable {
     public List<Categoria> getCategorias() {
         return categoriaServicio.listarCategorias(); // Obtener la lista de categorías desde tu servicio o base de datos
     }
-    public void crearProducto(){
+    public void crearLibro(){
         try {
 
             if(!imagenes.isEmpty()){
                 LocalDate ldn = LocalDate.now();
-                //libro.setMiUsuario(usuarioServicio.obtenerUsuario("123"));
                 // Obtener la categoría seleccionada por su código
                 Categoria categoriaSeleccionada = categoriaServicio.obtenerCategoria(codigoCategoriaSeleccionada);
                 libro.setMiCategoria(categoriaSeleccionada);
                 libro.setImagenes(imagenes);
-                libro.setFechaLimite(LocalDate.from(LocalDateTime.now().plusMonths(2)));
                 libro.setFechaCreacion(ldn);
-                libroServicio.registrarProducto(libro);
+                libroServicio.registrarLibro(libro);
                 FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Alerta","La creacion del producto fue exitosa");
                 FacesContext.getCurrentInstance().addMessage(null,msg);
             }else {
@@ -116,7 +110,7 @@ public class ProductoBean implements Serializable {
         String categoriaSeleccionada = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("categoria");
 
         // Obtener los productos de la categoría seleccionada desde tu servicio o base de datos
-        productosPorCategoria = libroServicio.obtenerProductosPorCategoria(categoriaSeleccionada);
+        librosPorCategoria = libroServicio.obtenerLibrosPorCategoria(categoriaSeleccionada);
     }
 
 

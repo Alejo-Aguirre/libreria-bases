@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class DetalleDeProducto implements Serializable {
+public class DetalleDeLibro implements Serializable {
 
     @EqualsAndHashCode.Include
     @Id
@@ -28,7 +28,7 @@ public class DetalleDeProducto implements Serializable {
     @ManyToOne
     private Libro miLibro;
 
-    @OneToMany(mappedBy = "miDetalleDeProducto")
-    private List<OpcionDetalleProducto>misOpcionesDetalleProductos;
+    @OneToMany(mappedBy = "miDetalleDeLibro")
+    private List<OpcionDetalleLibro>misOpcionesDetalleLibros;
 
 }
