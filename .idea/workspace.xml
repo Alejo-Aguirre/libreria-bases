@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc8b336f-cb2d-4c7f-a277-02412142f29a" name="Changes" comment="main de user y producto">
+    <list default="true" id="bc8b336f-cb2d-4c7f-a277-02412142f29a" name="Changes" comment="cambios">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/UsuarioServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/UsuarioServicioImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainLibroBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainLibroBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainUsuarioBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainUsuarioBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/webapp/MainLibros.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/MainLibros.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/main/webapp/MainUsuarios.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/MainUsuarios.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/webapp/resultados_busqueda.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/resultados_busqueda.xhtml" afterDir="false" />
     </list>
     <list id="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" name="Changes by JuanDa Cortes" comment="">
       <change beforePath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainLibroBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainLibroBean.java" afterDir="false" />
@@ -56,20 +53,6 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/web/src/main/webapp/index.xhtml" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainLibroBean.java">
-      <ranges>
-        <range start1="7" end1="7" start2="7" end2="8" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="11" end1="11" start2="12" end2="21" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="25" end1="25" start2="35" end2="39" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="29" end1="30" start2="43" end2="44" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="33" end1="34" start2="47" end2="48" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="35" end1="35" start2="49" end2="51" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="36" end1="36" start2="52" end2="90" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="41" end1="43" start2="95" end2="107" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-      </ranges>
-    </file>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -111,7 +94,7 @@
     "extract.method.default.visibility": "private",
     "jdk.selected.JAVA_MODULE": "corretto-11",
     "last_directory_selection": "/home/escanor/Documentos/workspaces-2023-1/default-inellej/uniMarket/negocio/src/main/java/co/edu/uniquindio/proyecto",
-    "last_opened_file_path": "C:/Users/lenovo/Desktop/new programas eclipse/libreria bases",
+    "last_opened_file_path": "C:/Users/lenovo/Desktop/new programas eclipse/libreria bases/persistencia/src/main/java/co/edu/uniquindio/proyecto/entidades",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -121,7 +104,7 @@
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "02b7bdbb6e472b4a0c4d40ccc19cf93c",
+    "spring.configuration.checksum": "f724bf1a494bd7ae2c1420470d081c5d",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -269,7 +252,8 @@
       <workItem from="1699158250573" duration="255000" />
       <workItem from="1699469407723" duration="3446000" />
       <workItem from="1699907340145" duration="2570000" />
-      <workItem from="1699910055752" duration="28091000" />
+      <workItem from="1699910055752" duration="28349000" />
+      <workItem from="1700080569113" duration="1140000" />
     </task>
     <task id="LOCAL-00001" summary="servicos de moderador , nota : se quito la cedula de la clase persona,se modifico el archivo usuariossql borrando las cedulas y se probaron los test nuevamente para corroborar la funcionalidad">
       <created>1682501406341</created>
@@ -376,7 +360,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699926787745</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="cambios">
+      <created>1699940240006</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1699940240006</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -408,7 +399,8 @@
     <MESSAGE value="fecha limite 2 meses" />
     <MESSAGE value="data view imagen para los productos" />
     <MESSAGE value="main de user y producto" />
-    <option name="LAST_COMMIT_MESSAGE" value="main de user y producto" />
+    <MESSAGE value="cambios" />
+    <option name="LAST_COMMIT_MESSAGE" value="cambios" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

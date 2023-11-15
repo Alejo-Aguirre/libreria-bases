@@ -17,7 +17,7 @@
     <div class="container mt-5">
         <h4>Libros</h4>
         <h:form>
-            <p:dataView value="#{busqueda.libros}" var="libro" gridIcon="pi pi-th-large" listIcon="pi pi-bars" paginator="true" rows="9">
+            <p:dataView value="#{busquedaBean.libros}" var="libro" gridIcon="pi pi-th-large" listIcon="pi pi-bars" paginator="true" rows="9">
                 <p:dataViewGridItem>
                     <div class="card">
                         <img src="/uploads/#{libro.imagenPrincipal}" class="card-img-top" alt="..." style="max-height: 650px; object-fit: cover;"/>
