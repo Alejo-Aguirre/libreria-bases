@@ -15,7 +15,7 @@ public interface ModeradorServicio {
 
     Moderador buscarModeradorPorCodigo(String codigo) throws Exception;
 
-    Moderador iniciarSesion(String email, String password) throws Exception;
+    Moderador iniciarSesion(String username, String password) throws Exception;
 
     Moderador obtenerModerador(String codigo) throws Exception;
 }

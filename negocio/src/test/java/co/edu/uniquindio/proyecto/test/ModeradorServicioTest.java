@@ -23,7 +23,7 @@ public class ModeradorServicioTest {
 
     @Test
     public void registrarModeradorTest(){
-        Moderador m = new Moderador("905","Juan Pérez","juan@gmail.com","juanito23","juan1234");
+        Moderador m = new Moderador("905","Juan Pérez","juan@gmail.com","juan","12");
         try {
             Moderador registrado = moderadorServicio.registrarModerador(m);
             Assertions.assertNotNull(registrado);

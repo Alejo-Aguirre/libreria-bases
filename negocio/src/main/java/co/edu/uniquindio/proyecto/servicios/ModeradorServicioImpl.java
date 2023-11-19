@@ -80,8 +80,8 @@ public class ModeradorServicioImpl implements ModeradorServicio {
     }
 
     @Override
-    public Moderador iniciarSesion(String email, String password) throws Exception {
-        Optional<Moderador> moderadorExistente = moderadorRepo.findByEmailAndPassword(email, password);
+    public Moderador iniciarSesion(String username, String password) throws Exception {
+        Optional<Moderador> moderadorExistente = moderadorRepo.findByUsernameAndPassword(username, password);
         if (!moderadorExistente.isPresent()) {
             throw new Exception("El correo electrónico o la contraseña son incorrectos");
         }

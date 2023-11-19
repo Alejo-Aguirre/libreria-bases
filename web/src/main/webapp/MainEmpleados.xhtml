@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Main Empleado</title>
+</h:head>
+
+<h:body>
+    <div class="container mt-5">
+        <h4>Empleados</h4>
+        <h:form id="empleadosForm">
+            <!-- Barra de búsqueda -->
+            <h:panelGrid columns="3" styleClass="mb-3">
+                <!-- Asegúrate de que el componente p:inputText tenga un id -->
+                <p:inputText id="codigoBusqueda" value="#{mainEmpleadoBean.codigoBusqueda}" placeholder="Buscar por código" />
+                <p:commandButton value="Buscar" action="#{mainEmpleadoBean.buscarEmpleadoPorCodigo}" update=":empleadosForm:empleadosTable" process="@this" />
+            </h:panelGrid>
+            <!-- Tabla de Empleados -->
+            <p:dataTable id="empleadosTable" var="empleado" value="#{mainEmpleadoBean.empleados}"
+                         paginator="true" rows="10" selection="#{mainEmpleadoBean.empleadoSeleccionado}"
+                         rowKey="#{empleado.codigo}" editMode="row" rowEditListener="#{mainEmpleadoBean.onRowEdit}">
+
+                <!-- Columna de Edición -->
+                <p:column style="width:32px">
+                    <p:rowEditor />
+                </p:column>
+                <p:column headerText="Codigo">
+                    <h:outputText value="#{empleado.codigo}"/>
+                </p:column>
+                <p:column headerText="Nombre">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{empleado.nombre}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{empleado.nombre}" style="width:100%" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Correo">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{empleado.email}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{empleado.email}" style="width:100%" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Username">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{empleado.username}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{empleado.username}" style="width:100%" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Password">
+                    <p:cellEditor>
+                        <f:facet name="output">
+                            <h:outputText value="#{empleado.password}" />
+                        </f:facet>
+                        <f:facet name="input">
+                            <p:inputText value="#{empleado.password}" style="width:100%" />
+                        </f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Acciones">
+                    <!-- Eliminar -->
+                    <p:commandButton value="Eliminar" action="#{mainEmpleadoBean.eliminarEmpleado(empleado.codigo)}"
+                                     update=":empleadosForm:empleadosTable :empleadosForm:growl @form" process="@this"/>
+                    <!-- Editar -->
+                    <p:commandButton value="Editar" oncomplete="PF('editDialog').show()" update=":empleadosForm:editForm" process="@this">
+                        <f:setPropertyActionListener target="#{mainEmpleadoBean.empleadoSeleccionado}" value="#{empleado}" />
+                    </p:commandButton>
+                </p:column>
+
+            </p:dataTable>
+
+            <!-- Formulario de edición -->
+            <p:dialog header="Editar Empleado" widgetVar="editDialog" resizable="false" modal="true" showEffect="fade" hideEffect="fade">
+                <h:panelGrid id="editForm" columns="2" cellpadding="5">
+                    <h:outputText value="Nombre:" />
+                    <p:inputText value="#{mainEmpleadoBean.empleadoSeleccionado.nombre}" />
+
+                    <h:outputText value="Correo:" />
+                    <p:inputText value="#{mainEmpleadoBean.empleadoSeleccionado.email}" />
+
+                    <h:outputText value="Username:" />
+                    <p:inputText value="#{mainEmpleadoBean.empleadoSeleccionado.username}" />
+
+                    <h:outputText value="Password:" />
+                    <p:inputText value="#{mainEmpleadoBean.empleadoSeleccionado.password}" />
+
+                    <!-- Agrega más campos según las propiedades del empleado que desees editar -->
+
+                    <!-- Botón Guardar -->
+                    <p:commandButton value="Guardar" action="#{mainEmpleadoBean.onRowEdit}" update=":empleadosForm:growl :empleadosForm:empleadosTable" process="@this" styleClass="p-button-success"/>
+
+                </h:panelGrid>
+            </p:dialog>
+
+            <!-- Mensajes -->
+            <p:growl id="growl" showDetail="true" sticky="true" life="5000"/>
+
+            <!-- Botones -->
+            <div>
+                <!-- Botón Crear Empleado -->
+                <p:commandButton value="Crear Empleado" action="#{mainEmpleadoBean.redirigirFormulario}" icon="pi pi-plus"
+                                 update=":empleadosForm" process="@this"/>
+                <!-- Botón Generar Reporte -->
+                <p:commandButton value="Generar Reporte" action="#{mainEmpleadoBean.generarReportePDF}" icon="pi pi-file-pdf"
+                                 update=":empleadosForm:growl" process="@this"/>
+            </div>
+        </h:form>
+    </div>
+</h:body>
+</html>

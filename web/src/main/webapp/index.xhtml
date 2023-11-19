@@ -34,7 +34,14 @@
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="index.xhtml" class="nav-link px-2 text-secondary">Inicio</a></li>
-                        <li><a href="crear_libro.xhtml" class="nav-link px-2 text-white">Crear Libro</a></li>
+
+                        <!-- Mostrar solo si el usuario está autenticado y es moderador -->
+                        <ui:fragment rendered="#{seguridadBean.autenticado and seguridadBean.rol eq 'MODERADOR'}">
+                            <li><a href="MainLibros.xhtml" class="nav-link px-2 text-white">Libros</a></li>
+                            <li><a href="MainUsuarios.xhtml" class="nav-link px-2 text-white">Usuarios</a></li>
+                            <li><a href="#" class="nav-link px-2 text-white">Empleados</a></li>
+                        </ui:fragment>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Categorías
@@ -45,10 +52,13 @@
                                 </ui:repeat>
                             </ul>
                         </li>
-                        <li><a href="MainLibros.xhtml" class="nav-link px-2 text-white">Pricing</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-                        <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+
+                        <!-- Mostrar solo si el usuario está autenticado y es moderador -->
+                        <ui:fragment rendered="#{seguridadBean.autenticado and seguridadBean.rol eq 'MODERADOR'}">
+                            <li><a href="#" class="nav-link px-2 text-white">Compras</a></li>
+                        </ui:fragment>
                     </ul>
+
 
                     <h:form id="formPrincipal">
                         <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 input-search ui-inputgroup">
@@ -58,46 +68,46 @@
                         </div>
                     </h:form>
 
-                    <div class="text-end">
-                        <a href="#" class="btn btn-outline-light me-2" onclick="PF('loginDialog').show()">Iniciar sesión</a>
-                        <a href="registrar_usuario.xhtml" class="btn btn-warning">Registrarse</a>
-                    </div>
+                    <!-- Sección de inicio de sesión -->
+                    <!-- Sección de inicio de sesión y usuario autenticado -->
+                    <h:form id="formLogin" rendered="#{not seguridadBean.autenticado}">
+                        <div class="text-end">
+                            <a href="#" class="btn btn-outline-light me-2" onclick="PF('loginDialog').show()">Iniciar sesión</a>
+                            <a href="registrar_usuario.xhtml" class="btn btn-warning">Registrarse</a>
+                        </div>
+                    </h:form>
+
+                    <h:form id="formUser" rendered="#{seguridadBean.autenticado}">
+                        <div class="text-end">
+                            <p:commandButton value="#{seguridadBean.usuarioSesion.nombre}" styleClass="btn btn-outline-light me-2" icon="pi pi-user" />
+                            <p:commandButton value="Cerrar sesión" action="#{seguridadBean.cerrarSesion}" styleClass="btn btn-danger" update=":formPrincipal"/>
+                        </div>
+                    </h:form>
+
+                    <!-- Diálogo de inicio de sesión -->
+                    <p:dialog header="Iniciar Sesión" showEffect="fade" widgetVar="loginDialog" modal="true" rendered="#{not seguridadBean.autenticado}">
+                        <h:form>
+                            <h:panelGrid columns="2" columnClasses="label, value">
+                                <h:outputLabel for="email" value="username:" />
+                                <p:inputText id="email" value="#{seguridadBean.username}" required="true" />
+
+                                <h:outputLabel for="password" value="Contraseña:" />
+                                <p:password id="password" value="#{seguridadBean.password}" required="true" />
+
+                                <!-- Otros campos si es necesario -->
+
+                                <f:facet name="footer">
+                                    <p:commandButton value="Iniciar Sesión" action="#{seguridadBean.iniciarSesion}" update=":formPrincipal" oncomplete="PF('loginDialog').hide()" />
+                                </f:facet>
+                            </h:panelGrid>
+                        </h:form>
+                    </p:dialog>
+
                 </div>
             </div>
         </header>
     </div>
 
-    <p:dialog header="Iniciar Sesión" showEffect="fade" widgetVar="loginDialog" modal="true" rendered="#{not seguridadBean.autenticado}">
-        <h:form>
-            <h:panelGrid columns="2" columnClasses="label, value">
-                <h:outputLabel for="email" value="username:" />
-                <p:inputText id="email" value="#{seguridadBean.username}" required="true" />
-
-                <h:outputLabel for="password" value="Contraseña:" />
-                <p:password id="password" value="#{seguridadBean.password}" required="true" />
-
-                <!-- Otros campos si es necesario -->
-
-                <f:facet name="footer">
-                    <p:commandButton value="Iniciar Sesión" action="#{seguridadBean.iniciarSesion}" update=":formPrincipal" oncomplete="PF('loginDialog').hide()" />
-                </f:facet>
-            </h:panelGrid>
-        </h:form>
-    </p:dialog>
-
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-lg-3">
-                <h4>Filtros</h4>
-                <p>Categorías:</p>
-                <ul>
-                    <ui:repeat value="#{categoriaBean.categorias}" var="categoria">
-                        <li><a href="#" class="nav-link px-2 text-secondary">#{categoria.nombre}</a></li>
-                    </ui:repeat>
-                </ul>
-            </div>
-        </div>
-    </div>
 
     <div class="container mt-5">
         <h4>Libros</h4>
