@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.repositorios;
 
 import co.edu.uniquindio.proyecto.entidades.*;
+import co.edu.uniquindio.proyecto.entidades.enums.Editorial;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -47,5 +48,10 @@ public interface LibroRepo extends JpaRepository<Libro,String>{
 
     @Query("SELECT l FROM Libro l WHERE l.codigo = :codigo")
     List<Libro> buscarLibrosCodigo(@Param("codigo") String codigo);
+
+
+
+
+
 
 }

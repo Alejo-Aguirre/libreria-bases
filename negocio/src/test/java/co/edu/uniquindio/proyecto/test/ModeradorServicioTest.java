@@ -23,7 +23,7 @@ public class ModeradorServicioTest {
 
     @Test
     public void registrarModeradorTest(){
-        Moderador m = new Moderador("905","Juan Pérez","juan@gmail.com","juan","12");
+        Moderador m = new Moderador("905","22","Juan Pérez","juan@gmail.com","juan","12");
         try {
             Moderador registrado = moderadorServicio.registrarModerador(m);
             Assertions.assertNotNull(registrado);
@@ -36,7 +36,7 @@ public class ModeradorServicioTest {
     @Test
     public void actualizarModeradorTest() throws Exception {
         // Crear un moderador existente en la base de datos
-        Moderador m = new Moderador("905","Juan Pérez","juan@gmail.com","juanito23","juan1234");
+        Moderador m = new Moderador("905","22","Juan Pérez","juan@gmail.com","juan","12");
         Moderador registrado = moderadorServicio.registrarModerador(m);
 
         // Modificar los datos del moderador
@@ -55,7 +55,7 @@ public class ModeradorServicioTest {
 
     @Test
     public void eliminarModeradorTest(){
-        Moderador m = new Moderador("905","Juan Pérez","juan@gmail.com","juanito23","juan1234");
+        Moderador m =new Moderador("905","22","Juan Pérez","juan@gmail.com","juan","12");
         try {
             moderadorServicio.registrarModerador(m);
             moderadorServicio.eliminarModerador("904");
@@ -66,7 +66,7 @@ public class ModeradorServicioTest {
 
     @Test
     public void listarModeradoresTest(){
-        Moderador m = new Moderador("905","Juan Pérez","juan@gmail.com","juanito23","juan1234");
+        Moderador m = new Moderador("905","22","Juan Pérez","juan@gmail.com","juan","12");
         try {
             moderadorServicio.registrarModerador(m);
             List<Moderador> moderadores = moderadorServicio.listarModeradores();
@@ -78,7 +78,7 @@ public class ModeradorServicioTest {
 
     @Test
     public void inicioSesionTest(){
-        Moderador m = new Moderador("905","Juan Pérez","juan@gmail.com","juanito23","juan1234");
+        Moderador m =new Moderador("905","22","Juan Pérez","juan@gmail.com","juan","12");
         try {
             moderadorServicio.registrarModerador(m);
             moderadorServicio.iniciarSesion("juan@gmail.com","juan1234");

@@ -41,7 +41,7 @@ public class LibroServicioTest {
     @Test
     public void comentarProductoTest(){
 
-        Usuario  u = new Usuario("905","juan alonso","jalonso@gmail.com","3216758976","28#14-09","unialonso","Heropro.12");
+        Usuario  u = new Usuario("905","22","juan alonso","jalonso@gmail.com","3216758976","28#14-09","unialonso","Heropro.12");
 
         LocalDate ld = LocalDate.now();
         Libro libro = new Libro("2","misery","stephen king","libro de",400000,ld,5);
@@ -60,7 +60,7 @@ public class LibroServicioTest {
     @Test
     public void guardarProductoEnFavoritosTest(){
 
-        Usuario  u = new Usuario("904","mario contreras","mario@gmail.com","3216758976","28#14-09","unimario","Heropro.12");
+        Usuario  u = new Usuario("904","22","mario contreras","mario@gmail.com","3216758976","28#14-09","unimario","Heropro.12");
 
         LocalDate ld = LocalDate.now();
         Libro l = new Libro("2","misery","stephen king","libro de",400000,ld,5);

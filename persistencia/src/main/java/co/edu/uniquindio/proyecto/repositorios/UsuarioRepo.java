@@ -56,5 +56,8 @@ public interface UsuarioRepo extends JpaRepository<Usuario,String> {
     @Query("select u from Usuario u where u.codigo = :codigo")
     Usuario obtenerUsuarioPorCodigo(String codigo);
 
+    @Query(value = "SELECT MAX(codigo) FROM Usuario", nativeQuery = true)
+    Integer obtenerUltimoNumero();
+
 
 }

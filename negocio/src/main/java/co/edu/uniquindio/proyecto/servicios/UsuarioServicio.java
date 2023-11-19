@@ -13,6 +13,8 @@ public interface UsuarioServicio {
     void eliminarUsuario(String codigo) throws Exception;
     List<Usuario> listarUsuarios();
 
+    public int obtenerUltimoNumero();
+
     Usuario iniciarSesion(String username,String password) throws Exception;
 
     Usuario obtenerUsuario(String codigo) throws Exception;

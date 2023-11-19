@@ -32,6 +32,7 @@ public class EmpleadoBean  implements Serializable {
     }
     public void registrarEmpleado(){
         try {
+            empleado.setCodigo(generarNuevoCodigo());
             empleadoServicio.registrarModerador(empleado);
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Alerta","Registro exitoso");
             FacesContext.getCurrentInstance().addMessage(null,msg);

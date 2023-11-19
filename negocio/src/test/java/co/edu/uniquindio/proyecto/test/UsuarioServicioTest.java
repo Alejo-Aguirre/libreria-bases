@@ -25,7 +25,7 @@ public class UsuarioServicioTest {
 
     @Test
     public void registrarusuarioTest(){
-        Usuario  u = new Usuario("904","mario contreras","mario@gmail.com","3216758976","28#14-09","unimario","Heropro.12");
+        Usuario u = new Usuario("909","1233", "Mario", "mario@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
         try {
             Usuario registrado = usuarioServicio.registrarUsuario(u);
             Assertions.assertNotNull(registrado);
@@ -38,7 +38,7 @@ public class UsuarioServicioTest {
     @Test
     public void actualizarUsuarioTest() throws Exception {
         // Crear un usuario existente en la base de datos
-        Usuario u = new Usuario("904","mario contreras","mario@gmail.com","3216758976","28#14-09","unimario","Heropro.12");
+        Usuario u = new Usuario("909","1233", "Mario", "mario@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
         Usuario registrado = usuarioServicio.registrarUsuario(u);
 
         // Modificar los datos del usuario
@@ -59,7 +59,7 @@ public class UsuarioServicioTest {
     @Test
     public void eliminarUsuarioTest() throws Exception {
         // Crear un objeto Usuario con algunos datos de ejemplo
-        Usuario usuario = new Usuario("909", "Mario", "mario@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
+        Usuario usuario = new Usuario("909","1233", "Mario", "mario@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
 
         // Registrar el usuario
         usuarioServicio.registrarUsuario(usuario);
@@ -82,7 +82,7 @@ public class UsuarioServicioTest {
 
     @Test
     public void listarUsuariosTest(){
-        Usuario  u = new Usuario("904","mario contreras","mario@gmail.com","3216758976","28#14-09","unimario","Heropro.12");
+        Usuario u = new Usuario("909","1233", "Mario", "mario@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
         try {
             usuarioServicio.registrarUsuario(u);
             List<Usuario> usuarios =usuarioServicio.listarUsuarios();
@@ -102,7 +102,7 @@ public class UsuarioServicioTest {
      */
     @Test
     public void inicioSesionTest(){
-        Usuario  u = new Usuario("904","mario contreras","mario@gmail.com","3216758976","28#14-09","unimario","Heropro.12");
+        Usuario u = new Usuario("909","1233", "Mario", "mario@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
         try {
             usuarioServicio.registrarUsuario(u);
             usuarioServicio.iniciarSesion("unimario","Heropro.12");
@@ -117,7 +117,7 @@ public class UsuarioServicioTest {
 
     @Test
     public void obtenerUsuarioTest(){
-        Usuario  usuario = new Usuario("909","mariocontreras","mario@gmail.com","3216758976","28#14-09","unimario","Heropro.12");
+        Usuario usuario = new Usuario("909","1233", "Mario", "mario@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
         try {
             usuarioServicio.registrarUsuario(usuario);
             Usuario u = usuarioServicio.obtenerUsuario("909");

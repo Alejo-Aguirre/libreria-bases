@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.entidades;
 
 
+import co.edu.uniquindio.proyecto.entidades.enums.Editorial;
 import lombok.*;
 
 import javax.persistence.*;
@@ -51,6 +52,11 @@ public class Libro implements Serializable {
     @ToString.Exclude
     @ManyToOne
     private Categoria miCategoria;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Editorial miEditorial;
+
 
 
 

@@ -88,6 +88,15 @@ public class UsuarioServicioImpl implements UsuarioServicio{
     }
 
     @Override
+    public int obtenerUltimoNumero() {
+        Integer ultimoNumero = usuarioRepo.obtenerUltimoNumero();
+
+        // Devolvemos el último número + 1 o 0 si no hay usuarios en la base de datos
+        return ultimoNumero != null ? ultimoNumero + 1 : 0;
+    }
+
+
+    @Override
     public Usuario iniciarSesion(String username, String password) throws Exception {
     return      usuarioRepo.findByUsernameAndPassword(username,password).orElseThrow(() -> new Exception ("los datos de autenticacion son incorrectos"));
 

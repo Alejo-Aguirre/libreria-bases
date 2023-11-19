@@ -2,6 +2,7 @@ package co.edu.uniquinidio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.entidades.Categoria;
 import co.edu.uniquindio.proyecto.entidades.Libro;
+import co.edu.uniquindio.proyecto.entidades.enums.Editorial;
 import co.edu.uniquindio.proyecto.servicios.CategoriaServicio;
 import co.edu.uniquindio.proyecto.servicios.LibroServicio;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.model.SelectItem;
 import javax.faces.view.ViewScoped;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -24,6 +26,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Component
@@ -36,6 +39,22 @@ public class LibroBean implements Serializable {
 
     @Getter @Setter
     private String codigoCategoriaSeleccionada;
+
+    @Getter @Setter
+    private Editorial editorialSeleccionada;
+
+
+    private List<Editorial> editoriales;
+
+
+    public List<Editorial> getEditoriales() {
+        return Arrays.asList(Editorial.values());
+    }
+
+    public void setEditorialSeleccionada(Editorial editorialSeleccionada) {
+        this.editorialSeleccionada = editorialSeleccionada;
+    }
+
     @Autowired
     private LibroServicio libroServicio;
 
@@ -56,6 +75,8 @@ public class LibroBean implements Serializable {
     public List<Categoria> getCategorias() {
         return categoriaServicio.listarCategorias(); // Obtener la lista de categorías desde tu servicio o base de datos
     }
+
+
     public void crearLibro(){
         try {
 
@@ -64,6 +85,13 @@ public class LibroBean implements Serializable {
                 // Obtener la categoría seleccionada por su código
                 Categoria categoriaSeleccionada = categoriaServicio.obtenerCategoria(codigoCategoriaSeleccionada);
                 libro.setMiCategoria(categoriaSeleccionada);
+
+                // Obtener la editorial seleccionada (asumiendo que es un Enum)
+                Editorial editorialSeleccionada = getEditorialSeleccionada();
+
+                // Configurar la editorial seleccionada en el libro
+                libro.setMiEditorial(editorialSeleccionada);
+
                 libro.setImagenes(imagenes);
                 libro.setFechaCreacion(ldn);
                 libroServicio.registrarLibro(libro);

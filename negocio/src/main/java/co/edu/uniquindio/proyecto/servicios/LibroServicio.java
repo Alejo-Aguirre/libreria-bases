@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.servicios;
 
 import co.edu.uniquindio.proyecto.entidades.*;
+import co.edu.uniquindio.proyecto.entidades.enums.Editorial;
 
 import java.util.List;
 
@@ -36,4 +37,6 @@ public interface LibroServicio {
 
 
     List <Libro> buscarLibrosCodigo(String codigo);
+
+;
 }

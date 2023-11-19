@@ -25,4 +25,7 @@ public interface ModeradorRepo extends JpaRepository<Moderador,String> {
     Moderador obtenerModeradorPorCodigo(String codigo);
 
     Optional<Moderador> findByUsernameAndPassword(String username, String password);
+
+    @Query(value = "SELECT MAX(codigo) FROM Moderador", nativeQuery = true)
+    Integer obtenerUltimoNumero();
 }

@@ -30,7 +30,7 @@ public class CompraServicioTest {
     @Test
     public void registrarCompraTest() throws Exception {
         // Crear un objeto Usuario con algunos datos de ejemplo
-        Usuario usuario = new Usuario("909", "Mario", "mario@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
+        Usuario usuario = new Usuario("909","22", "Mario", "mario@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
         // Registrar el usuario antes de crear la compra (si aún no está registrado)
         usuarioServicio.registrarUsuario(usuario);
         // Crear un objeto Compra con algunos datos de ejemplo
@@ -53,7 +53,7 @@ public class CompraServicioTest {
     @Test
     public void actualizarCompraTest() throws Exception {
         // Crear un objeto Usuario con algunos datos de ejemplo
-        Usuario usuario = new Usuario("908", "Mario", "mario2@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
+        Usuario usuario = new Usuario("908","22", "Mario", "mario2@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
 
         // Registrar el usuario antes de crear la compra (si aún no está registrado)
         usuarioServicio.registrarUsuario(usuario);
@@ -88,7 +88,7 @@ public class CompraServicioTest {
     @Test
     public void eliminarCompraTest() throws Exception {
         // Crear un objeto Usuario con algunos datos de ejemplo
-        Usuario usuario = new Usuario("908", "Mario", "mario2@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
+        Usuario usuario = new Usuario("908","22", "Mario", "mario2@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
 
         // Registrar el usuario antes de crear la compra (si aún no está registrado)
         usuarioServicio.registrarUsuario(usuario);
@@ -118,8 +118,8 @@ public class CompraServicioTest {
     @Test
     public void listarComprasTest() {
         // Crear algunos objetos de ejemplo
-        Usuario usuario1 = new Usuario("910", "Mario", "mario2@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
-        Usuario usuario2 = new Usuario("911", "Luigi", "luigi@gmail.com", "3216758977", "28#14-10", "uniluigi", "Heropro.12");
+        Usuario usuario1 = new Usuario("910","222", "Mario", "mario2@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
+        Usuario usuario2 = new Usuario("911","33", "Luigi", "luigi@gmail.com", "3216758977", "28#14-10", "uniluigi", "Heropro.12");
 
         Compra compra1 = new Compra("457", LocalDate.now(), 100.0F, MedioDePago.MASTERCARD, usuario1);
         Compra compra2 = new Compra("789", LocalDate.now(), 50.0F, MedioDePago.TRANSFERENCIA_BANCARIA_PSE, usuario2);

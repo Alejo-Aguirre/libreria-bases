@@ -3,6 +3,7 @@ package co.edu.uniquindio.proyecto.servicios;
 import co.edu.uniquindio.proyecto.entidades.Categoria;
 import co.edu.uniquindio.proyecto.entidades.Compra;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.entidades.enums.Editorial;
 import co.edu.uniquindio.proyecto.repositorios.CategoriaRepo;
 import org.springframework.stereotype.Service;
 
@@ -60,5 +61,9 @@ public class CategoriaServiciolmpl implements CategoriaServicio {
     public List<Categoria> listarCategorias() {
         return categoriaRepo.findAll();
     }
+
+
+
+
 
 }
