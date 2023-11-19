@@ -4,10 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc8b336f-cb2d-4c7f-a277-02412142f29a" name="Changes" comment="cambios">
+    <list default="true" id="bc8b336f-cb2d-4c7f-a277-02412142f29a" name="Changes" comment="buscador y diagrama visual en desarollo">
+      <change afterPath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/SeguridadBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/LibroServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/LibroServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/LibroServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/LibroServicioImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/UsuarioServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/UsuarioServicio.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persistencia/src/main/java/co/edu/uniquindio/proyecto/entidades/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/persistencia/src/main/java/co/edu/uniquindio/proyecto/entidades/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/persistencia/src/main/java/co/edu/uniquindio/proyecto/repositorios/LibroRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/persistencia/src/main/java/co/edu/uniquindio/proyecto/repositorios/LibroRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainLibroBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainLibroBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainUsuarioBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainUsuarioBean.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/webapp/MainLibros.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/MainLibros.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/main/webapp/MainUsuarios.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/MainUsuarios.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/webapp/resultados_busqueda.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/resultados_busqueda.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/webapp/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/index.xhtml" afterDir="false" />
     </list>
     <list id="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" name="Changes by JuanDa Cortes" comment="">
       <change beforePath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainLibroBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainLibroBean.java" afterDir="false" />
@@ -53,6 +63,23 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/web/src/main/webapp/index.xhtml" root0="FORCE_HIGHLIGHTING" />
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainLibroBean.java">
+      <ranges>
+        <range start1="13" end1="13" start2="13" end2="24" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
+        <range start1="17" end1="17" start2="28" end2="40" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
+        <range start1="25" end1="25" start2="48" end2="53" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
+        <range start1="30" end1="30" start2="58" end2="59" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
+        <range start1="32" end1="32" start2="61" end2="62" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
+        <range start1="34" end1="35" start2="64" end2="66" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
+        <range start1="40" end1="40" start2="71" end2="73" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
+        <range start1="41" end1="41" start2="74" end2="75" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
+        <range start1="51" end1="52" start2="85" end2="86" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
+        <range start1="55" end1="56" start2="89" end2="90" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
+        <range start1="59" end1="59" start2="93" end2="151" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -79,35 +106,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "TODO_SCOPE": "All Places",
-    "WebServerToolWindowFactoryState": "false",
-    "extract.method.default.visibility": "private",
-    "jdk.selected.JAVA_MODULE": "corretto-11",
-    "last_directory_selection": "/home/escanor/Documentos/workspaces-2023-1/default-inellej/uniMarket/negocio/src/main/java/co/edu/uniquindio/proyecto",
-    "last_opened_file_path": "C:/Users/lenovo/Desktop/new programas eclipse/libreria bases/persistencia/src/main/java/co/edu/uniquindio/proyecto/entidades",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "spring.configuration.checksum": "f724bf1a494bd7ae2c1420470d081c5d",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;TODO_SCOPE&quot;: &quot;All Places&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;extract.method.default.visibility&quot;: &quot;private&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-11&quot;,
+    &quot;last_directory_selection&quot;: &quot;/home/escanor/Documentos/workspaces-2023-1/default-inellej/uniMarket/negocio/src/main/java/co/edu/uniquindio/proyecto&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/lenovo/Desktop/new programas eclipse/libreria bases/persistencia/src/main/java/co/edu/uniquindio/proyecto/entidades&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;f724bf1a494bd7ae2c1420470d081c5d&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="co.edu.uniquindio.proyecto.servicios" />
@@ -132,7 +159,7 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.CategoriaServicioTest.registrarcategoria">
+  <component name="RunManager" selected="Spring Boot.WebApplication">
     <configuration name="CategoriaServicioTest.registrarcategoria" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="negocio" />
       <extension name="coverage">
@@ -186,8 +213,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CategoriaServicioTest.registrarcategoria" />
         <item itemvalue="Spring Boot.WebApplication" />
+        <item itemvalue="JUnit.CategoriaServicioTest.registrarcategoria" />
         <item itemvalue="Spring Boot.NegocioApplication" />
       </list>
     </recent_temporary>
@@ -253,7 +280,9 @@
       <workItem from="1699469407723" duration="3446000" />
       <workItem from="1699907340145" duration="2570000" />
       <workItem from="1699910055752" duration="28349000" />
-      <workItem from="1700080569113" duration="1140000" />
+      <workItem from="1700080569113" duration="1193000" />
+      <workItem from="1700340851018" duration="4066000" />
+      <workItem from="1700364530051" duration="12124000" />
     </task>
     <task id="LOCAL-00001" summary="servicos de moderador , nota : se quito la cedula de la clase persona,se modifico el archivo usuariossql borrando las cedulas y se probaron los test nuevamente para corroborar la funcionalidad">
       <created>1682501406341</created>
@@ -367,7 +396,14 @@
       <option name="project" value="LOCAL" />
       <updated>1699940240006</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="buscador y diagrama visual en desarollo">
+      <created>1700082466324</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1700082466325</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -400,7 +436,8 @@
     <MESSAGE value="data view imagen para los productos" />
     <MESSAGE value="main de user y producto" />
     <MESSAGE value="cambios" />
-    <option name="LAST_COMMIT_MESSAGE" value="cambios" />
+    <MESSAGE value="buscador y diagrama visual en desarollo" />
+    <option name="LAST_COMMIT_MESSAGE" value="buscador y diagrama visual en desarollo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -16,6 +16,12 @@
     <div class="container mt-5">
         <h4>Usuarios</h4>
         <h:form id="usuariosForm">
+            <!-- Barra de búsqueda -->
+            <h:panelGrid columns="3" styleClass="mb-3">
+                <!-- Asegúrate de que el componente p:inputText tenga un id -->
+                <p:inputText id="codigoBusqueda" value="#{mainUsuarioBean.codigoBusqueda}" placeholder="Buscar por código" />
+                <p:commandButton value="Buscar" action="#{mainUsuarioBean.buscarUsuarioPorCodigo}" update=":usuariosForm:usuariosTable" process="@this" />
+            </h:panelGrid>
             <!-- Tabla de Usuarios -->
             <p:dataTable id="usuariosTable" var="usuario" value="#{mainUsuarioBean.usuarios}"
                          paginator="true" rows="10" selection="#{mainUsuarioBean.usuarioSeleccionado}"
@@ -112,6 +118,7 @@
 
                     <!-- Botón Guardar -->
                     <p:commandButton value="Guardar" action="#{mainUsuarioBean.onRowEdit}" update=":usuariosForm:growl :usuariosForm:usuariosTable" process="@this" styleClass="p-button-success"/>
+
                 </h:panelGrid>
             </p:dialog>
 

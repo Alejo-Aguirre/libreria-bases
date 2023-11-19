@@ -1,6 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -16,10 +14,29 @@
     <div class="container mt-5">
         <h4>Libros</h4>
         <h:form>
+            <!-- Barra de búsqueda -->
+            <div style="text-align: center; margin-bottom: 10px;">
+                <p:outputLabel value="Buscar libro por Código:" />
+                <p:inputText id="codigo" value="#{mainLibroBean.codigo}" style="width:300px" placeholder="Ingrese código"/>
+                <p:commandButton value="Buscar" action="#{mainLibroBean.buscarLibros}" update="librosTable" />
+
+            </div>
+
             <!-- Tabla de Libros -->
-            <p:dataTable id="librosTable" var="libro" value="#{mainLibroBean.libros}" paginator="true" rows="10">
-                <p:column headerText="Nombre">
+            <p:dataTable id="librosTable" var="libro" value="#{mainLibroBean.libros}" paginator="true" rows="10"
+                         emptyMessage="No se encontraron libros">
+
+                <p:column headerText="Codigo" filterBy="#{libro.codigo}" filterMatchMode="contains">
+                    <h:outputText value="#{libro.codigo}"/>
+                </p:column>
+                <p:column headerText="Nombre" filterBy="#{libro.nombre}" filterMatchMode="contains">
                     <h:outputText value="#{libro.nombre}"/>
+                </p:column>
+                <p:column headerText="Autor">
+                    <h:outputText value="#{libro.autor}"/>
+                </p:column>
+                <p:column headerText="Unidades">
+                    <h:outputText value="#{libro.unidades}"/>
                 </p:column>
                 <p:column headerText="Precio">
                     <h:outputText value="#{libro.precio}"/>
@@ -27,16 +44,16 @@
                 <p:column headerText="Categoría">
                     <h:outputText value="#{libro.miCategoria.nombre}"/>
                 </p:column>
+
                 <p:column headerText="Acciones">
                     <!-- Botones de Acciones -->
                     <p:commandButton value="Actualizar" action="#{mainLibroBean.actualizarLibro(libro)}"/>
-                    <p:commandButton value="Eliminar" action="#{mainLibroBean.eliminarLibro(libro)}"
-                                     update=":form:tablaLibros"/> <!-- Update the ID of your table -->
+                    <p:commandButton value="Eliminar" action="#{mainLibroBean.eliminarLibro(libro.codigo)}" update="@form"/>
                 </p:column>
             </p:dataTable>
 
             <!-- Botones -->
-            <div>
+            <div style="text-align: center; margin-top: 10px;">
                 <p:commandButton value="Crear Libro" action="#{mainLibroBean.redirigirFormulario}" icon="pi pi-plus"/>
                 <p:commandButton value="Generar Reporte" action="#{mainLibroBean.generarReportePDF}" icon="pi pi-file-pdf"/>
             </div>
@@ -44,4 +61,3 @@
     </div>
 </h:body>
 </html>
-

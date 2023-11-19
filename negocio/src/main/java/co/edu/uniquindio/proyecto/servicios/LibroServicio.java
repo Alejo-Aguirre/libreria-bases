@@ -33,4 +33,7 @@ public interface LibroServicio {
 
 
     List<Libro> obtenerLibrosPorCategoria(String categoriaSeleccionada);
+
+
+    List <Libro> buscarLibrosCodigo(String codigo);
 }

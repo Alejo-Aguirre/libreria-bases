@@ -45,8 +45,7 @@ public interface LibroRepo extends JpaRepository<Libro,String>{
     List<Libro> obtenerLibrosPorCategoria(@Param("categoria") String categoria);
 
 
-
-
-
+    @Query("SELECT l FROM Libro l WHERE l.codigo = :codigo")
+    List<Libro> buscarLibrosCodigo(@Param("codigo") String codigo);
 
 }

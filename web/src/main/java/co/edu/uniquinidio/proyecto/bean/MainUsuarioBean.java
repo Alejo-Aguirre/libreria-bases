@@ -6,6 +6,8 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
+import lombok.Getter;
+import lombok.Setter;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,6 +21,8 @@ import javax.faces.context.FacesContext;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Component
@@ -26,6 +30,9 @@ import java.util.List;
 @ViewScoped
 public class MainUsuarioBean implements Serializable {
 
+
+    @Getter @Setter
+    private String codigoBusqueda;
     @Autowired
     private UsuarioServicio usuarioServicio;
 
@@ -96,6 +103,47 @@ public class MainUsuarioBean implements Serializable {
             FacesContext.getCurrentInstance().addMessage("messages", msg);
         }
     }
+
+
+
+    // Getter y setter para codigoBusqueda
+
+    public void buscarUsuarioPorCodigo() {
+        try {
+            System.out.println("Iniciando búsqueda de usuario por código: " + codigoBusqueda);
+
+            if (codigoBusqueda != null && !codigoBusqueda.trim().isEmpty()) {
+                // Lógica para buscar usuarios por código
+                Usuario usuarioEncontrado = usuarioServicio.obtenerUsuario(codigoBusqueda);
+
+                if (usuarioEncontrado != null) {
+                    // Mostrar solo el usuario encontrado en la tabla
+                    this.usuarios = Collections.singletonList(usuarioEncontrado);
+                    System.out.println("Usuario encontrado: " + usuarioEncontrado.getCodigo());
+                } else {
+                    // Mostrar mensaje si no se encuentra el usuario
+                    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Usuario no encontrado", null);
+                    FacesContext.getCurrentInstance().addMessage("messages", msg);
+                    cargarUsuarios(); // Recargar la lista completa de usuarios
+                    System.out.println("Usuario no encontrado. Recargando la lista completa de usuarios.");
+                }
+            } else {
+                // Mostrar mensaje si el código de búsqueda está vacío
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Ingrese un código de búsqueda válido", null);
+                FacesContext.getCurrentInstance().addMessage("messages", msg);
+                cargarUsuarios(); // Recargar la lista completa de usuarios
+                System.out.println("Código de búsqueda vacío. Recargando la lista completa de usuarios.");
+            }
+
+        } catch (Exception e) {
+            // Mostrar mensaje de error
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al buscar usuario por código: " + e.getMessage(), null);
+            FacesContext.getCurrentInstance().addMessage("messages", msg);
+            System.out.println("Error durante la búsqueda de usuario por código: " + e.getMessage());
+        }
+    }
+
+
 
 
     public String redirigirFormulario() {

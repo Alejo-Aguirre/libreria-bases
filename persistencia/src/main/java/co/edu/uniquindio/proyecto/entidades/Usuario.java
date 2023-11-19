@@ -24,6 +24,7 @@ public class Usuario extends Persona implements Serializable {
 
      //entidad propietaria entre usuario producto
     @ManyToMany
+    @ToString.Exclude
      private List<Libro> librosFavoritos;
 
      @ToString.Exclude

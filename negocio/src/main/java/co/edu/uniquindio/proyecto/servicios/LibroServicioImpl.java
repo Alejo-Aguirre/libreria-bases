@@ -141,4 +141,11 @@ public class LibroServicioImpl implements LibroServicio {
     public List<Libro> obtenerLibrosPorCategoria(String categoriaSeleccionada) {
         return libroRepo.obtenerLibrosPorCategoria(categoriaSeleccionada);
     }
+
+    @Override
+    public List<Libro> buscarLibrosCodigo(String codigo) {
+        return libroRepo.buscarLibrosCodigo(codigo);
+    }
+
+
 }
