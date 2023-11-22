@@ -1,9 +1,7 @@
 package co.edu.uniquindio.proyecto;
 
 import co.edu.uniquindio.proyecto.entidades.Categoria;
-import co.edu.uniquindio.proyecto.entidades.SubCategoria;
 import co.edu.uniquindio.proyecto.repositorios.CategoriaRepo;
-import co.edu.uniquindio.proyecto.repositorios.SubCategoriaRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +20,6 @@ public class CategoriaTest {
 
     @Autowired
     private CategoriaRepo categoriaRepo;
-
-    @Autowired
-    private SubCategoriaRepo subCategoriaRepo;
 
     //--------------------------------------Crud---------------------------------------------------------------
     @Test
@@ -104,27 +99,6 @@ public class CategoriaTest {
 
 
 
-    @Test
-    @Sql("classpath:usuarios.sql")
-    public void obtenerCategoriasYSubCategorias() {
-        List<Categoria> categorias = categoriaRepo.findAll(); // Obtener todas las categorías
-        assertNotNull(categorias); // Asegurarse de que la lista de categorías no sea nula
 
-        // Iterar por cada categoría
-        for (Categoria categoria : categorias) {
-            System.out.println("Categoría: " + categoria.getNombre());
-            System.out.println("Subcategorías:");
-
-            List<SubCategoria> subCategorias = subCategoriaRepo.obtenerSubCategoriaPorCodigo(categoria.getCodigo());
-            assertNotNull(subCategorias); // Asegurarse de que la lista de subcategorías no sea nula
-
-            // Imprimir las subcategorías de la categoría actual
-            for (SubCategoria subCategoria : subCategorias) {
-                System.out.println(subCategoria);
-            }
-
-            System.out.println("--------------------");
-        }
-    }
 
 }

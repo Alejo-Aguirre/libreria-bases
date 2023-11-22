@@ -1,5 +1,7 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import co.edu.uniquindio.proyecto.entidades.enums.Ciudad;
+import co.edu.uniquindio.proyecto.entidades.enums.Departamento;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
@@ -36,15 +38,10 @@ public class Usuario extends Persona implements Serializable {
      @OneToMany(mappedBy = "miUsuario")
      private List<Compra> misCompras;
 
-    public Usuario(String codigo, @Length(max = 150) String cedula, @Length(max = 150) String nombre, @Email String email, String username, String password, String direccion, String telefono) {
-        super(codigo, cedula, nombre, email, username, password);
+
+    public Usuario(String codigo, @Length(max = 150) String cedula, @Length(max = 150) String nombre, @Length(max = 150) String apellido, @Email String email, String username, String password, Ciudad miCiudad, Departamento miDepartamento, String direccion, String telefono) {
+        super(codigo, cedula, nombre, apellido, email, username, password, miCiudad, miDepartamento);
         this.direccion = direccion;
         this.telefono = telefono;
     }
-
-
-    //entidad inversa
-
-
-
 }

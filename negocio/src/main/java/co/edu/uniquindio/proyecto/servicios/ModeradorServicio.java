@@ -18,4 +18,5 @@ public interface ModeradorServicio {
     Moderador iniciarSesion(String username, String password) throws Exception;
 
     Moderador obtenerModerador(String codigo) throws Exception;
+
 }

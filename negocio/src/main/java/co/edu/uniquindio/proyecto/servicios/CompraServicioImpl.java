@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.servicios;
 
 import co.edu.uniquindio.proyecto.entidades.Compra;
+import co.edu.uniquindio.proyecto.entidades.DetalleCompra;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.repositorios.CompraRepo;
 import org.springframework.stereotype.Service;
@@ -26,6 +27,8 @@ public class CompraServicioImpl implements CompraServicio{
 
         return compraRepo.save(c);
     }
+
+
 
     @Override
     public Compra actualizarCompra(Compra c) throws Exception {

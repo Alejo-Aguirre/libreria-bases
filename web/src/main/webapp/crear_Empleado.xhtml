@@ -91,6 +91,30 @@
                         <p:inputText id="email_e" value="#{empleadoBean.empleado.email}" required="true"/>
                     </div>
                 </div>
+
+                <div class="ui-g">
+                    <div class="ui-g-4">
+                        <h:outputLabel value="Departamento" for="departamento_p"/>
+                    </div>
+                    <div class="ui-g-8">
+                        <p:selectOneMenu id="departamento_p" value="#{empleadoBean.departamentoSeleccionado}">
+                            <f:selectItem itemLabel="Seleccionar" itemValue=""/>
+                            <f:selectItems value="#{empleadoBean.departamentos}" />
+                        </p:selectOneMenu>
+                    </div>
+                </div>
+
+                <div class="ui-g">
+                    <div class="ui-g-4">
+                        <h:outputLabel value="Ciudad" for="ciudad_p"/>
+                    </div>
+                    <div class="ui-g-8">
+                        <p:selectOneMenu id="ciudad_p" value="#{empleadoBean.ciudadSeleccionada}">
+                            <f:selectItem itemLabel="Seleccionar" itemValue=""/>
+                            <f:selectItems value="#{empleadoBean.ciudades}" />
+                        </p:selectOneMenu>
+                    </div>
+                </div>
                 <div class="ui-g">
                     <div class="ui-g-4">
                         <h:outputLabel value="Username" for="username_e" styleClass="input-label"/>

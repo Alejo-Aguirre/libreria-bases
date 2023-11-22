@@ -42,8 +42,6 @@ public class LibroBean implements Serializable {
 
     @Getter @Setter
     private Editorial editorialSeleccionada;
-
-
     private List<Editorial> editoriales;
 
 

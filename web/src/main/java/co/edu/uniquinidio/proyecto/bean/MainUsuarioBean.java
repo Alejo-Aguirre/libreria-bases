@@ -1,16 +1,22 @@
 package co.edu.uniquinidio.proyecto.bean;
 
+import co.edu.uniquindio.proyecto.entidades.Libro;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import lombok.Getter;
 import lombok.Setter;
 import org.primefaces.event.RowEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.primefaces.event.RowEditEvent;
+
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -28,10 +34,12 @@ import java.util.List;
 @Component
 @ManagedBean(name = "mainUsuarioBean")
 @ViewScoped
+
 public class MainUsuarioBean implements Serializable {
 
 
-    @Getter @Setter
+    @Getter
+    @Setter
     private String codigoBusqueda;
     @Autowired
     private UsuarioServicio usuarioServicio;
@@ -82,11 +90,6 @@ public class MainUsuarioBean implements Serializable {
         }
     }
 
-    public void onRowCancel(RowEditEvent<Usuario> event) {
-        FacesMessage msg = new FacesMessage("Edición cancelada", String.valueOf(event.getObject().getCodigo()));
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-
 
 // Otros imports...
 
@@ -105,12 +108,14 @@ public class MainUsuarioBean implements Serializable {
     }
 
 
-
     // Getter y setter para codigoBusqueda
 
     public void buscarUsuarioPorCodigo() {
         try {
-            System.out.println("Iniciando búsqueda de usuario por código: " + codigoBusqueda);
+            for (int i = -1; i <= 10; i++) {
+                codigoBusqueda = "00" + i;
+
+                System.out.println("Iniciando búsqueda de usuario por código: " + codigoBusqueda);
 
             if (codigoBusqueda != null && !codigoBusqueda.trim().isEmpty()) {
                 // Lógica para buscar usuarios por código
@@ -144,33 +149,45 @@ public class MainUsuarioBean implements Serializable {
     }
 
 
-
-
     public String redirigirFormulario() {
         return "registrar_usuario.xhtml?faces-redirect=true";
     }
 
-    public void generarReportePDF() {
+    public void generarReportePDF(String letra) {
         try {
-            // Lógica para generar el informe PDF
+            // Obtener la lista de usuarios por la letra específica
+            List<Usuario> usuarios = usuarioServicio.obtenerUsuariosPorLetra(letra);
+
             Document document = new Document();
-            String filePath = "C:/Users/lenovo/Desktop/pdfs/usuarios.pdf";
+            String filePath = "C:/Users/lenovo/Desktop/pdfs/usuarios_" + letra + ".pdf";
 
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
 
-            document.add(new Paragraph("Reporte de Usuarios"));
+            document.add(new Paragraph("Reporte de Usuarios cuyos códigos inician con la letra " + letra));
+
+            PdfPTable table = new PdfPTable(4); // 4 columnas (1 para el valor numérico y 3 para datos)
+            table.setWidthPercentage(100);
+
+            // Añadir encabezados de columna
+            table.addCell("No.");
+            table.addCell("Código");
+            table.addCell("Nombre");
+            table.addCell("Apellido");
+
+            int contador = 1;
 
             for (Usuario usuario : usuarios) {
-                document.add(new Paragraph("Código: " + usuario.getCodigo()));
-                document.add(new Paragraph("Nombre: " + usuario.getNombre()));
-                document.add(new Paragraph("Correo: " + usuario.getEmail()));
-                document.add(new Paragraph("Dirección: " + usuario.getDireccion()));
-                document.add(new Paragraph("Username: " + usuario.getUsername()));
-                document.add(new Paragraph("Password: " + usuario.getPassword()));
-                document.add(new Paragraph(""));
+                table.addCell(String.valueOf(contador));
+                agregarCelda(table, usuario.getCodigo());
+                agregarCelda(table, usuario.getNombre());
+                agregarCelda(table, usuario.getApellido());
+
+                table.completeRow(); // Completa la fila actual y comienza una nueva fila
+                contador++;
             }
 
+            document.add(table);
             document.close();
 
             // Mostrar mensaje de éxito
@@ -188,4 +205,60 @@ public class MainUsuarioBean implements Serializable {
 
 
 
+
+
+    public void generarReporteIntermedioPDF(Ciudad ciudad) {
+        try {
+            // Obtener la lista de usuarios por la letra específica
+            List<Usuario> usuarios = usuarioServicio.obtenerUsuariosPorCiudad(ciudad);
+
+            Document document = new Document();
+            String filePath = "C:/Users/lenovo/Desktop/pdfs/usuarios_" + ciudad + ".pdf";
+
+            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            document.open();
+
+            document.add(new Paragraph("Reporte de Usuarios de la ciudad " +ciudad));
+
+            PdfPTable table = new PdfPTable(4); // 4 columnas (1 para el valor numérico y 3 para datos)
+            table.setWidthPercentage(100);
+
+            // Añadir encabezados de columna
+            table.addCell("No.");
+            table.addCell("Código");
+            table.addCell("Nombre");
+            table.addCell("Apellido");
+
+            int contador = 1;
+
+            for (Usuario usuario : usuarios) {
+                table.addCell(String.valueOf(contador));
+                agregarCelda(table, usuario.getCodigo());
+                agregarCelda(table, usuario.getNombre());
+                agregarCelda(table, usuario.getApellido());
+
+                table.completeRow(); // Completa la fila actual y comienza una nueva fila
+                contador++;
+            }
+
+            document.add(table);
+            document.close();
+
+            // Mostrar mensaje de éxito
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informe PDF generado correctamente", null);
+            FacesContext.getCurrentInstance().addMessage("messages", msg);
+
+        } catch (DocumentException | IOException e) {
+            e.printStackTrace();
+
+            // Mostrar mensaje de error
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al generar el informe PDF: " + e.getMessage(), null);
+            FacesContext.getCurrentInstance().addMessage("messages", msg);
+        }
+    }
+
+    private void agregarCelda(PdfPTable table, String valor) {
+        PdfPCell celda = new PdfPCell(new Phrase(valor));
+        table.addCell(celda);
+    }
 }

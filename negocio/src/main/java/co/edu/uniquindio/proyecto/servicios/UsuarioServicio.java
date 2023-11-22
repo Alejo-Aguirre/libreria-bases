@@ -1,6 +1,7 @@
 package co.edu.uniquindio.proyecto.servicios;
 
 import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.entidades.enums.Ciudad;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,6 +22,8 @@ public interface UsuarioServicio {
 
     Usuario obtenerPropietarioProducto(String codigoProducto);
 
+    List<Usuario> obtenerUsuariosPorLetra(String letra);
 
+    List<Usuario> obtenerUsuariosPorCiudad(Ciudad ciudad);
 
 }

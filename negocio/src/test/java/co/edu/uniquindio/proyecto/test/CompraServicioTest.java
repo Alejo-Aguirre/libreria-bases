@@ -3,8 +3,11 @@ package co.edu.uniquindio.proyecto.test;
 
 import co.edu.uniquindio.proyecto.NegocioApplication;
 import co.edu.uniquindio.proyecto.entidades.Compra;
+import co.edu.uniquindio.proyecto.entidades.Libro;
 import co.edu.uniquindio.proyecto.entidades.MedioDePago;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.entidades.enums.Ciudad;
+import co.edu.uniquindio.proyecto.entidades.enums.Departamento;
 import co.edu.uniquindio.proyecto.servicios.CompraServicio;
 import co.edu.uniquindio.proyecto.servicios.ModeradorServicio;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
@@ -18,7 +21,6 @@ import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootTest(classes = NegocioApplication.class)
-@Transactional
 public class CompraServicioTest {
     @Autowired
     private CompraServicio compraServicio;
@@ -30,7 +32,7 @@ public class CompraServicioTest {
     @Test
     public void registrarCompraTest() throws Exception {
         // Crear un objeto Usuario con algunos datos de ejemplo
-        Usuario usuario = new Usuario("909","22", "Mario", "mario@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
+        Usuario usuario = new Usuario("910","22", "Mario","aguirre", "mario@gmail.com","alejo","123", Ciudad.CALI, Departamento.VALLE_DEL_CAUCA,"clll 6","322554");
         // Registrar el usuario antes de crear la compra (si aún no está registrado)
         usuarioServicio.registrarUsuario(usuario);
         // Crear un objeto Compra con algunos datos de ejemplo
@@ -50,10 +52,14 @@ public class CompraServicioTest {
     }
 
 
+
+
+
+
     @Test
     public void actualizarCompraTest() throws Exception {
         // Crear un objeto Usuario con algunos datos de ejemplo
-        Usuario usuario = new Usuario("908","22", "Mario", "mario2@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
+        Usuario usuario = new Usuario("909","22", "Mario","aguirre", "mario@gmail.com","alejo","123", Ciudad.CALI, Departamento.VALLE_DEL_CAUCA,"clll 6","322554");
 
         // Registrar el usuario antes de crear la compra (si aún no está registrado)
         usuarioServicio.registrarUsuario(usuario);
@@ -88,7 +94,7 @@ public class CompraServicioTest {
     @Test
     public void eliminarCompraTest() throws Exception {
         // Crear un objeto Usuario con algunos datos de ejemplo
-        Usuario usuario = new Usuario("908","22", "Mario", "mario2@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
+        Usuario usuario = new Usuario("909","22", "Mario","aguirre", "mario@gmail.com","alejo","123", Ciudad.CALI, Departamento.VALLE_DEL_CAUCA,"clll 6","322554");
 
         // Registrar el usuario antes de crear la compra (si aún no está registrado)
         usuarioServicio.registrarUsuario(usuario);
@@ -118,8 +124,8 @@ public class CompraServicioTest {
     @Test
     public void listarComprasTest() {
         // Crear algunos objetos de ejemplo
-        Usuario usuario1 = new Usuario("910","222", "Mario", "mario2@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
-        Usuario usuario2 = new Usuario("911","33", "Luigi", "luigi@gmail.com", "3216758977", "28#14-10", "uniluigi", "Heropro.12");
+        Usuario usuario1 = new Usuario("909","22", "Mario","aguirre", "mario@gmail.com","alejo","123", Ciudad.CALI, Departamento.VALLE_DEL_CAUCA,"clll 6","322554");
+        Usuario usuario2 = new Usuario("908","224", "Mario","aguirre", "mario3@gmail.com","alejo43","123", Ciudad.CALI, Departamento.VALLE_DEL_CAUCA,"clll 6","322554");
 
         Compra compra1 = new Compra("457", LocalDate.now(), 100.0F, MedioDePago.MASTERCARD, usuario1);
         Compra compra2 = new Compra("789", LocalDate.now(), 50.0F, MedioDePago.TRANSFERENCIA_BANCARIA_PSE, usuario2);

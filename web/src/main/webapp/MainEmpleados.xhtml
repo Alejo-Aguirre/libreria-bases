@@ -31,11 +31,12 @@
                 <p:column style="width:32px">
                     <p:rowEditor />
                 </p:column>
+
+                <p:column headerText="Cédula" filterBy="#{empleado.cedula}" filterOptions="{placeholder: 'Buscar por cédula'}">
+                    <h:outputText value="#{empleado.cedula}" />
+                </p:column>
                 <p:column headerText="Codigo">
                     <h:outputText value="#{empleado.codigo}"/>
-                </p:column>
-                <p:column headerText="Cedula">
-                    <h:outputText value="#{empleado.cedula}"/>
                 </p:column>
                 <p:column headerText="Nombre">
                     <p:cellEditor>
@@ -44,16 +45,6 @@
                         </f:facet>
                         <f:facet name="input">
                             <p:inputText value="#{empleado.nombre}" style="width:100%" />
-                        </f:facet>
-                    </p:cellEditor>
-                </p:column>
-                <p:column headerText="Correo">
-                    <p:cellEditor>
-                        <f:facet name="output">
-                            <h:outputText value="#{empleado.email}" />
-                        </f:facet>
-                        <f:facet name="input">
-                            <p:inputText value="#{empleado.email}" style="width:100%" />
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
@@ -67,22 +58,24 @@
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
-                <p:column headerText="Password">
+                <p:column headerText="Email">
                     <p:cellEditor>
                         <f:facet name="output">
-                            <h:outputText value="#{empleado.password}" />
+                            <h:outputText value="#{empleado.email}" />
                         </f:facet>
                         <f:facet name="input">
-                            <p:inputText value="#{empleado.password}" style="width:100%" />
+                            <p:inputText value="#{empleado.email}" style="width:100%" />
                         </f:facet>
                     </p:cellEditor>
                 </p:column>
+
+                <!-- ... (otras columnas) ... -->
                 <p:column headerText="Acciones">
                     <!-- Eliminar -->
                     <p:commandButton value="Eliminar" action="#{mainEmpleadoBean.eliminarEmpleado(empleado.codigo)}"
                                      update=":empleadosForm:empleadosTable :empleadosForm:growl @form" process="@this"/>
-                    <!-- Editar -->
-                    <p:commandButton value="Editar" oncomplete="PF('editDialog').show()" update=":empleadosForm:editForm" process="@this">
+                    <!-- Actualizar -->
+                    <p:commandButton value="Actualizar" oncomplete="PF('editDialog').show()" update=":empleadosForm:editForm" process="@this">
                         <f:setPropertyActionListener target="#{mainEmpleadoBean.empleadoSeleccionado}" value="#{empleado}" />
                     </p:commandButton>
                 </p:column>
@@ -90,24 +83,27 @@
             </p:dataTable>
 
             <!-- Formulario de edición -->
-            <p:dialog header="Editar Empleado" widgetVar="editDialog" resizable="false" modal="true" showEffect="fade" hideEffect="fade">
+            <p:dialog header="Actualizar Empleado" widgetVar="editDialog" resizable="false" modal="true" showEffect="fade" hideEffect="fade">
                 <h:panelGrid id="editForm" columns="2" cellpadding="5">
+
+
+                    <h:outputText value="Cedula:" />
+                    <p:inputText value="#{mainEmpleadoBean.empleadoSeleccionado.cedula}" />
                     <h:outputText value="Nombre:" />
                     <p:inputText value="#{mainEmpleadoBean.empleadoSeleccionado.nombre}" />
-
-                    <h:outputText value="Correo:" />
+                    <h:outputText value="Email:" />
                     <p:inputText value="#{mainEmpleadoBean.empleadoSeleccionado.email}" />
-
                     <h:outputText value="Username:" />
                     <p:inputText value="#{mainEmpleadoBean.empleadoSeleccionado.username}" />
-
-                    <h:outputText value="Password:" />
+                    <h:outputText value="Username:" />
                     <p:inputText value="#{mainEmpleadoBean.empleadoSeleccionado.password}" />
 
-                    <!-- Agrega más campos según las propiedades del empleado que desees editar -->
+                    <!-- ... (otros campos) ... -->1
 
-                    <!-- Botón Guardar -->
-                    <p:commandButton value="Guardar" action="#{mainEmpleadoBean.onRowEdit}" update=":empleadosForm:growl :empleadosForm:empleadosTable" process="@this" styleClass="p-button-success"/>
+                    <!-- Botón Actualizar -->
+                    <p:commandButton value="Actualizar" action="#{mainEmpleadoBean.actualizarEmpleado}" update=":empleadosForm:growl :empleadosForm:empleadosTable" process="@this" styleClass="p-button-success"/>
+                    <!-- Botón Cancelar (para cerrar el diálogo) -->
+                    <p:commandButton value="Cancelar" onclick="PF('editDialog').hide();" process="@this" />
 
                 </h:panelGrid>
             </p:dialog>
@@ -122,6 +118,12 @@
                                  update=":empleadosForm" process="@this"/>
                 <!-- Botón Generar Reporte -->
                 <p:commandButton value="Generar Reporte" action="#{mainEmpleadoBean.generarReportePDF}" icon="pi pi-file-pdf"
+                                 update=":empleadosForm:growl" process="@this"/>
+
+                <p:commandButton value="Generar Reporte Intermedio" action="#{mainEmpleadoBean.generarReporteIntermedioPDF}" icon="pi pi-file-pdf"
+                                 update=":empleadosForm:growl" process="@this"/>
+
+                <p:commandButton value="Generar Reporte Complejo" action="#{mainEmpleadoBean.generarReporteComplejoPDF}" icon="pi pi-file-pdf"
                                  update=":empleadosForm:growl" process="@this"/>
             </div>
         </h:form>

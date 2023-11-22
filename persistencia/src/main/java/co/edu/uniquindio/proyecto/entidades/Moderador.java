@@ -1,5 +1,7 @@
 package co.edu.uniquindio.proyecto.entidades;
 
+import co.edu.uniquindio.proyecto.entidades.enums.Ciudad;
+import co.edu.uniquindio.proyecto.entidades.enums.Departamento;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -23,9 +25,10 @@ public class Moderador extends Persona implements Serializable {
     @OneToMany(mappedBy ="miModerador")
    private List<LibroModerador> misProductosModerador;
 
-    public Moderador(String codigo, @Length(max = 150) String cedula, @Length(max = 150) String nombre, @Email String email, String username, String password) {
-        super(codigo, cedula, nombre, email, username, password);
+    public Moderador(String codigo, @Length(max = 150) String cedula, @Length(max = 150) String nombre, @Length(max = 150) String apellido, @Email String email, String username, String password, Ciudad miCiudad, Departamento miDepartamento) {
+        super(codigo, cedula, nombre, apellido, email, username, password, miCiudad, miDepartamento);
     }
 
-    //se debe crear la relación entre moderador y producto
+
+//se debe crear la relación entre moderador y producto
 }

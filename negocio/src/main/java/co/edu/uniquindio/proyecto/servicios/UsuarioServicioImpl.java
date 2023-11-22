@@ -1,10 +1,8 @@
 package co.edu.uniquindio.proyecto.servicios;
 
 import co.edu.uniquindio.proyecto.entidades.Usuario;
-import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+import co.edu.uniquindio.proyecto.entidades.enums.Ciudad;
 import co.edu.uniquindio.proyecto.repositorios.UsuarioRepo;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 
@@ -111,6 +109,17 @@ public class UsuarioServicioImpl implements UsuarioServicio{
     @Override
     public Usuario obtenerPropietarioProducto(String codigoProducto) {
         return null;
+    }
+
+
+    @Override
+    public List<Usuario> obtenerUsuariosPorLetra(String letra) {
+        return usuarioRepo.obtenerUsuariosPorLetra(letra);
+    }
+
+    @Override
+    public List<Usuario> obtenerUsuariosPorCiudad(Ciudad ciudad) {
+        return usuarioRepo.obtenerUsuariosPorCiudad(ciudad);
     }
 
 

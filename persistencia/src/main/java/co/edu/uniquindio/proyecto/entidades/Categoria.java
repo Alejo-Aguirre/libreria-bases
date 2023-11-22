@@ -29,10 +29,6 @@ public class Categoria implements Serializable {
     private List<Libro> misLibros;
     //entidad  inversa
 
-    @OneToMany(mappedBy = "miCategoria")
-    private List<SubCategoria> miSubCategorias;
-    //entidad inversa
-
 
     public Categoria(String codigo, String nombre) {
         this.codigo = codigo;

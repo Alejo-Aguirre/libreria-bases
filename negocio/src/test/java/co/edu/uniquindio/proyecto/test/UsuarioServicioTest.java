@@ -3,6 +3,8 @@ package co.edu.uniquindio.proyecto.test;
 import co.edu.uniquindio.proyecto.NegocioApplication;
 import co.edu.uniquindio.proyecto.entidades.Compra;
 import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.entidades.enums.Ciudad;
+import co.edu.uniquindio.proyecto.entidades.enums.Departamento;
 import co.edu.uniquindio.proyecto.servicios.UsuarioServicio;
 
 import org.junit.jupiter.api.Assertions;
@@ -25,7 +27,7 @@ public class UsuarioServicioTest {
 
     @Test
     public void registrarusuarioTest(){
-        Usuario u = new Usuario("909","1233", "Mario", "mario@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
+        Usuario u = new Usuario("909","22", "Mario","aguirre", "mario@gmail.com","alejo","123", Ciudad.CALI, Departamento.VALLE_DEL_CAUCA,"clll 6","322554");
         try {
             Usuario registrado = usuarioServicio.registrarUsuario(u);
             Assertions.assertNotNull(registrado);
@@ -38,7 +40,7 @@ public class UsuarioServicioTest {
     @Test
     public void actualizarUsuarioTest() throws Exception {
         // Crear un usuario existente en la base de datos
-        Usuario u = new Usuario("909","1233", "Mario", "mario@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
+        Usuario u = new Usuario("909","22", "Mario","aguirre", "mario@gmail.com","alejo","123", Ciudad.CALI, Departamento.VALLE_DEL_CAUCA,"clll 6","322554");
         Usuario registrado = usuarioServicio.registrarUsuario(u);
 
         // Modificar los datos del usuario
@@ -59,7 +61,7 @@ public class UsuarioServicioTest {
     @Test
     public void eliminarUsuarioTest() throws Exception {
         // Crear un objeto Usuario con algunos datos de ejemplo
-        Usuario usuario = new Usuario("909","1233", "Mario", "mario@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
+        Usuario usuario = new Usuario("909","22", "Mario","aguirre", "mario@gmail.com","alejo","123", Ciudad.CALI, Departamento.VALLE_DEL_CAUCA,"clll 6","322554");
 
         // Registrar el usuario
         usuarioServicio.registrarUsuario(usuario);
@@ -82,7 +84,7 @@ public class UsuarioServicioTest {
 
     @Test
     public void listarUsuariosTest(){
-        Usuario u = new Usuario("909","1233", "Mario", "mario@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
+        Usuario u = new Usuario("909","22", "Mario","aguirre", "mario@gmail.com","alejo","123", Ciudad.CALI, Departamento.VALLE_DEL_CAUCA,"clll 6","322554");
         try {
             usuarioServicio.registrarUsuario(u);
             List<Usuario> usuarios =usuarioServicio.listarUsuarios();
@@ -102,7 +104,7 @@ public class UsuarioServicioTest {
      */
     @Test
     public void inicioSesionTest(){
-        Usuario u = new Usuario("909","1233", "Mario", "mario@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
+        Usuario u = new Usuario("909","22", "Mario","aguirre", "mario@gmail.com","alejo","123", Ciudad.CALI, Departamento.VALLE_DEL_CAUCA,"clll 6","322554");
         try {
             usuarioServicio.registrarUsuario(u);
             usuarioServicio.iniciarSesion("unimario","Heropro.12");
@@ -117,7 +119,7 @@ public class UsuarioServicioTest {
 
     @Test
     public void obtenerUsuarioTest(){
-        Usuario usuario = new Usuario("909","1233", "Mario", "mario@gmail.com", "3216758976", "28#14-09", "unimario", "Heropro.12");
+        Usuario usuario = new Usuario("909","22", "Mario","aguirre", "mario@gmail.com","alejo","123", Ciudad.CALI, Departamento.VALLE_DEL_CAUCA,"clll 6","322554");
         try {
             usuarioServicio.registrarUsuario(usuario);
             Usuario u = usuarioServicio.obtenerUsuario("909");

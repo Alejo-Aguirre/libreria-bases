@@ -1,6 +1,9 @@
 package co.edu.uniquindio.proyecto.entidades;
 
 
+import co.edu.uniquindio.proyecto.entidades.enums.Ciudad;
+import co.edu.uniquindio.proyecto.entidades.enums.Departamento;
+import co.edu.uniquindio.proyecto.entidades.enums.Editorial;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
@@ -29,6 +32,10 @@ public class Persona implements Serializable  {
     @Length(max = 150)
     private String nombre;
 
+    @Column(nullable = false,length = 100)
+    @Length(max = 150)
+    private String apellido;
+
     @Column(nullable = false,length = 150,unique = true)
     @Email
     private String email;
@@ -38,6 +45,14 @@ public class Persona implements Serializable  {
 
     @Column(nullable = false,length = 20)
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Ciudad miCiudad;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Departamento miDepartamento;
 
 
 }

@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -50,8 +51,46 @@ public interface LibroRepo extends JpaRepository<Libro,String>{
     List<Libro> buscarLibrosCodigo(@Param("codigo") String codigo);
 
 
+    /**
+     * consulta simple
+     * lista los libros por el nombre de autor
+     * @param autor
+     * @return
+     */
+    @Query("SELECT l " +
+            "FROM Libro l" +
+            " WHERE l.autor = :autor")
+    List<Libro> buscarLibroPorAutor(@Param("autor") String autor);
+
+    /**
+     * consulta intermedia
+     * lista los libros segun el precio y los ordena asc por nombre
+     * @param precioValor
+     * @return
+     */
+    @Query("SELECT l FROM Libro l WHERE l.precio > :precioValor ORDER BY l.nombre")
+    List<Libro> buscarLibrosPorPrecioSuperior(@Param("precioValor") float precioValor);
+
+    /**
+     * consulta compleja
+     * @param categoriaValor
+     * @return
+     */
+    @Query("SELECT l " +
+            "FROM Libro l " +
+            "WHERE l.miCategoria = :categoriaValor ORDER BY l.precio DESC")
+    List<Libro> obtenerLibrosPorCategoriaOrdenadosPorPrecioDescendente(@Param("categoriaValor") Categoria categoriaValor);
 
 
-
-
+    /**
+     * Consulta para obtener libros con su categoría y autor,
+     * pero solo para aquellos cuya categoría tiene más de cierta cantidad de unidades en total:
+     * @param cantidadUnidades
+     * @return
+     */
+    @Query("SELECT l, l.miCategoria, l.autor " +
+            "FROM Libro l " +
+            "WHERE l.miCategoria IN (SELECT c FROM Categoria c WHERE (SELECT SUM(l2.unidades) FROM Libro l2 WHERE l2.miCategoria = c) > :cantidadUnidades)")
+    List<Object[]> BuscarLibroCategoriaAutorPorCategoriasConMasUnidades(
+            @Param("cantidadUnidades") Long cantidadUnidades);
 }

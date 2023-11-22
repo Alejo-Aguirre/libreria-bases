@@ -3,7 +3,6 @@ package co.edu.uniquindio.proyecto.servicios;
 import co.edu.uniquindio.proyecto.entidades.Moderador;
 import co.edu.uniquindio.proyecto.repositorios.ModeradorRepo;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -49,9 +48,12 @@ public class ModeradorServicioImpl implements ModeradorServicio {
             throw new Exception("El moderador con el código " + m.getCodigo() + " no existe");
         }
         Moderador moderador = moderadorExistente.get();
+        moderador.setCedula(m.getCedula());
         moderador.setNombre(m.getNombre());
         moderador.setEmail(m.getEmail());
         moderador.setPassword(m.getPassword());
+        System.out.println(moderador);
+        System.out.println(m);
         return moderadorRepo.save(moderador);
     }
 

@@ -14,13 +14,6 @@
     <div class="container mt-5">
         <h4>Libros</h4>
         <h:form>
-            <!-- Barra de búsqueda -->
-            <div style="text-align: center; margin-bottom: 10px;">
-                <p:outputLabel value="Buscar libro por Código:" />
-                <p:inputText id="codigo" value="#{mainLibroBean.codigo}" style="width:300px" placeholder="Ingrese código"/>
-                <p:commandButton value="Buscar" action="#{mainLibroBean.buscarLibros}" update="librosTable" />
-
-            </div>
 
             <!-- Tabla de Libros -->
             <p:dataTable id="librosTable" var="libro" value="#{mainLibroBean.libros}" paginator="true" rows="10"
@@ -29,7 +22,8 @@
                 <p:column headerText="Codigo" filterBy="#{libro.codigo}" filterMatchMode="contains">
                     <h:outputText value="#{libro.codigo}"/>
                 </p:column>
-                <p:column headerText="Nombre" filterBy="#{libro.nombre}" filterMatchMode="contains">
+
+                <p:column headerText="Nombre">
                     <h:outputText value="#{libro.nombre}"/>
                 </p:column>
                 <p:column headerText="Autor">
@@ -55,7 +49,12 @@
             <!-- Botones -->
             <div style="text-align: center; margin-top: 10px;">
                 <p:commandButton value="Crear Libro" action="#{mainLibroBean.redirigirFormulario}" icon="pi pi-plus"/>
-                <p:commandButton value="Generar Reporte" action="#{mainLibroBean.generarReportePDF}" icon="pi pi-file-pdf"/>
+                <p:commandButton value="Generar Reporte" action="#{mainLibroBean.generarReportePDF('Gilmer')}" icon="pi pi-file-pdf"/>
+                <!-- Botón para generar reporte intermedio -->
+                <p:commandButton value="Generar Reporte Intermedio" action="#{mainLibroBean.generarReporteIntermedio(500)}" icon="pi pi-file-pdf"/>
+                <!-- Botón para generar reporte complejo -->
+                <p:commandButton value="Generar Reporte Complejo" action="#{mainLibroBean.generarReporteComplejo('3')}" icon="pi pi-file-pdf"/>
+
             </div>
         </h:form>
     </div>

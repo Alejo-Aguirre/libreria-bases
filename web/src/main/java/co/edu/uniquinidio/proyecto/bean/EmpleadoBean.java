@@ -25,6 +25,37 @@ public class EmpleadoBean  implements Serializable {
     private ModeradorServicio empleadoServicio;
 
 
+// ciudades,ciudad seleccionada y pal depa lo mismo y en el resgitro agregar tambien
+    @Getter @Setter
+    private Departamento departamentoSeleccionado;
+
+    private List<Departamento> departamentos;
+
+    public void setDepartamentos(List<Departamento> departamentos) {
+        this.departamentos = departamentos;
+    }
+
+    public List<Departamento> getDepartamentos() {
+        return Arrays.asList(Departamento.values());
+    }
+
+
+    @Getter @Setter
+    private Ciudad ciudadSeleccionada;
+
+    private List<Ciudad> ciudades;
+
+
+    public void setCiudades(List<Ciudad> ciudades) {
+        this.ciudades = ciudades;
+    }
+
+    public List<Ciudad> getCiudades() {
+        return Arrays.asList(Ciudad.values());
+    }
+
+
+
     //cuando se instancia la clase automaticamente se llama a la siguiente funcion
     @PostConstruct
     public void inicializar(){

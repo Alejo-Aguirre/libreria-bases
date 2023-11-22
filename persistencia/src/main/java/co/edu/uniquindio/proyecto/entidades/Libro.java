@@ -17,7 +17,6 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 public class Libro implements Serializable {
-
     @Id
     @EqualsAndHashCode.Include
     private String codigo;

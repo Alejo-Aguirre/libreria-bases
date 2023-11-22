@@ -8,16 +8,17 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 import lombok.Getter;
 import lombok.Setter;
-import org.primefaces.event.RowEditEvent;
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
@@ -26,11 +27,9 @@ import java.util.Collections;
 import java.util.List;
 
 @Component
-@ManagedBean(name = "mainEmpleadosBean")
 @ViewScoped
 public class MainEmpleadoBean implements Serializable {
 
-    @Getter @Setter
     private String codigoBusqueda;
     @Autowired
     private ModeradorServicio empleadoServicio;
@@ -56,6 +55,14 @@ public class MainEmpleadoBean implements Serializable {
         return empleados;
     }
 
+    public String getCodigoBusqueda() {
+        return codigoBusqueda;
+    }
+
+    public void setCodigoBusqueda(String codigoBusqueda) {
+        this.codigoBusqueda = codigoBusqueda;
+    }
+
     public void cargarEmpleados() {
         try {
             this.empleados = empleadoServicio.listarModeradores();
@@ -64,27 +71,8 @@ public class MainEmpleadoBean implements Serializable {
         }
     }
 
-    public void onRowEdit(RowEditEvent<Moderador> event) {
-        try {
-            Moderador empleadoEditado = event.getObject();
 
-            // Lógica de edición - actualiza el empleado en la base de datos
-            empleadoServicio.actualizarModerador(empleadoEditado);
 
-            // Mostrar mensaje de éxito
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Empleado editado correctamente", null);
-            FacesContext.getCurrentInstance().addMessage("messages", msg);
-        } catch (Exception e) {
-            // Mostrar mensaje de error
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al editar empleado: " + e.getMessage(), null);
-            FacesContext.getCurrentInstance().addMessage("messages", msg);
-        }
-    }
-
-    public void onRowCancel(RowEditEvent<Moderador> event) {
-        FacesMessage msg = new FacesMessage("Edición cancelada", String.valueOf(event.getObject().getCodigo()));
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
 
     public void eliminarEmpleado(String codigo) {
         try {
@@ -105,7 +93,10 @@ public class MainEmpleadoBean implements Serializable {
 
     public void buscarEmpleadoPorCodigo() {
         try {
-            System.out.println("Iniciando búsqueda de empleado por código: " + codigoBusqueda);
+            //for (int i = -1; i <= 10; i++) {
+                //codigoBusqueda = "00"+i;
+
+                System.out.println("Iniciando búsqueda de empleado por código: "+getCodigoBusqueda()+codigoBusqueda);
 
             if (codigoBusqueda != null && !codigoBusqueda.trim().isEmpty()) {
                 // Lógica para buscar empleados por código
@@ -137,6 +128,56 @@ public class MainEmpleadoBean implements Serializable {
             System.out.println("Error durante la búsqueda de empleado por código: " + e.getMessage());
         }
     }
+
+    public String actualizarEmpleado() {
+        try {
+            Moderador empleadoExistente = empleadoServicio.obtenerModerador(empleadoSeleccionado.getCodigo());
+
+            if (empleadoExistente != null) {
+                // Actualizar solo los campos que se han ingresado
+                if (empleadoSeleccionado.getCedula() != null) {
+                    empleadoExistente.setCedula(empleadoSeleccionado.getCedula());
+                }
+                if (empleadoSeleccionado.getNombre() != null) {
+                    empleadoExistente.setNombre(empleadoSeleccionado.getNombre());
+                }
+                if (empleadoSeleccionado.getEmail() != null) {
+                    empleadoExistente.setEmail(empleadoSeleccionado.getEmail());
+                }
+                if (empleadoSeleccionado.getPassword() != null) {
+                    empleadoExistente.setPassword(empleadoSeleccionado.getPassword());
+                }
+
+                // Llamada al servicio para actualizar el empleado en la base de datos
+                empleadoServicio.actualizarModerador(empleadoExistente);
+
+                // Mostrar mensaje de éxito
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Empleado actualizado correctamente", null);
+                FacesContext.getCurrentInstance().addMessage("messages", msg);
+
+                // Limpiar el empleado seleccionado
+                //empleadoSeleccionado = null;
+
+                // Recargar la lista completa de empleados
+                cargarEmpleados();
+
+                // Cerrar el diálogo
+                //RequestContext.getCurrentInstance().execute("PF('editDialog').hide();");
+            } else {
+                // Mostrar mensaje si el empleado no se encuentra
+                FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Empleado no encontrado", null);
+                FacesContext.getCurrentInstance().addMessage("messages", msg);
+            }
+
+            return null; // O la página a la que quieras redirigir después de actualizar
+        } catch (Exception e) {
+            // Mostrar mensaje de error
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al actualizar empleado: " + e.getMessage(), null);
+            FacesContext.getCurrentInstance().addMessage("messages", msg);
+            return null; // O la página de error
+        }
+    }
+
 
     public String redirigirFormulario() {
         return "crear_Empleado.xhtml?faces-redirect=true";
