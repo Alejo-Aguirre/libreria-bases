@@ -4,33 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bc8b336f-cb2d-4c7f-a277-02412142f29a" name="Changes" comment="implementacion del crud de compras ,solo funciona seteado,faltan las consultas">
-      <change afterPath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/CompraBean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/web/src/main/webapp/headerTemplate.xhtml" afterDir="false" />
+    <list default="true" id="bc8b336f-cb2d-4c7f-a277-02412142f29a" name="Changes" comment="crud de compra listo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/CategoriaServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/CategoriaServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/CategoriaServiciolmpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/CategoriaServiciolmpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/LibroServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/LibroServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/LibroServicioImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/LibroServicioImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/ModeradorServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/ModeradorServicio.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/persistencia/src/main/java/co/edu/uniquindio/proyecto/entidades/enums/Departamento.java" beforeDir="false" afterPath="$PROJECT_DIR$/persistencia/src/main/java/co/edu/uniquindio/proyecto/entidades/enums/Departamento.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/persistencia/src/main/java/co/edu/uniquindio/proyecto/repositorios/CategoriaRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/persistencia/src/main/java/co/edu/uniquindio/proyecto/repositorios/CategoriaRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/persistencia/src/main/java/co/edu/uniquindio/proyecto/repositorios/LibroRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/persistencia/src/main/java/co/edu/uniquindio/proyecto/repositorios/LibroRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/persistencia/src/main/java/co/edu/uniquindio/proyecto/repositorios/ModeradorRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/persistencia/src/main/java/co/edu/uniquindio/proyecto/repositorios/ModeradorRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/persistencia/src/main/java/co/edu/uniquindio/proyecto/repositorios/UsuarioRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/persistencia/src/main/java/co/edu/uniquindio/proyecto/repositorios/UsuarioRepo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/EmpleadoBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/EmpleadoBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainCompraBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainCompraBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainEmpleadoBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainEmpleadoBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainLibroBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainLibroBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainUsuarioBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainUsuarioBean.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/webapp/MainCompras.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/MainCompras.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/webapp/MainEmpleados.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/MainEmpleados.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/webapp/MainLibros.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/MainLibros.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/CompraBean.java" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/CompraBean.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/main/webapp/MainUsuarios.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/MainUsuarios.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/main/webapp/crear_Empleado.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/crear_Empleado.xhtml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/main/webapp/crear_compra.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/crear_compra.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/webapp/crear_libro.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/crear_libro.xhtml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/main/webapp/index.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/index.xhtml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/main/webapp/registrar_usuario.xhtml" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/main/webapp/registrar_usuario.xhtml" afterDir="false" />
     </list>
     <list id="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" name="Changes by JuanDa Cortes" comment="">
       <change beforePath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/ModeradorServicio.java" beforeDir="false" afterPath="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/ModeradorServicio.java" afterDir="false" />
@@ -81,87 +61,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/web/src/main/webapp/index.xhtml" root0="FORCE_HIGHLIGHTING" />
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/persistencia/src/main/java/co/edu/uniquindio/proyecto/repositorios/ModeradorRepo.java">
-      <ranges>
-        <range start1="5" end1="5" start2="5" end2="7" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="9" end1="9" start2="11" end2="12" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="31" end1="36" start2="34" end2="35" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="37" end1="37" start2="36" end2="49" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="38" end1="38" start2="50" end2="54" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/negocio/src/main/java/co/edu/uniquindio/proyecto/servicios/ModeradorServicio.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="4" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="13" end1="13" start2="14" end2="16" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="21" end1="21" start2="24" end2="28" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainUsuarioBean.java">
-      <ranges>
-        <range start1="4" end1="4" start2="4" end2="5" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="119" end1="122" start2="120" end2="123" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="123" end1="140" start2="124" end2="142" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="155" end1="155" start2="157" end2="162" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="166" end1="167" start2="173" end2="174" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="206" end1="209" start2="213" end2="218" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="211" end1="211" start2="220" end2="221" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainLibroBean.java">
-      <ranges>
-        <range start1="2" end1="2" start2="2" end2="3" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="3" end1="3" start2="4" end2="5" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="17" end1="18" start2="19" end2="27" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="36" end1="36" start2="45" end2="49" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="64" end1="64" start2="77" end2="79" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="65" end1="65" start2="80" end2="81" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="75" end1="76" start2="91" end2="92" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="79" end1="80" start2="95" end2="96" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="104" end1="105" start2="120" end2="122" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="106" end1="106" start2="123" end2="124" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="149" end1="150" start2="167" end2="168" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="156" end1="157" start2="174" end2="175" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="161" end1="162" start2="179" end2="186" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="163" end1="165" start2="187" end2="200" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="167" end1="168" start2="202" end2="203" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="172" end1="173" start2="207" end2="208" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="174" end1="175" start2="209" end2="210" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="177" end1="178" start2="212" end2="212" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="201" end1="203" start2="235" end2="237" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="208" end1="210" start2="242" end2="246" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="216" end1="216" start2="252" end2="255" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="274" end1="274" start2="313" end2="384" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="283" end1="283" start2="393" end2="408" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/MainEmpleadoBean.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="6" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="7" end1="7" start2="10" end2="13" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="94" end1="94" start2="100" end2="101" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="100" end1="103" start2="107" end2="110" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="104" end1="123" start2="111" end2="130" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="185" end1="186" start2="192" end2="200" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="187" end1="188" start2="201" end2="204" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="189" end1="190" start2="205" end2="206" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="194" end1="195" start2="210" end2="222" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="197" end1="203" start2="224" end2="231" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="205" end1="205" start2="233" end2="290" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-        <range start1="220" end1="220" start2="305" end2="310" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/web/src/main/java/co/edu/uniquinidio/proyecto/bean/EmpleadoBean.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="5" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="14" end1="14" start2="16" end2="19" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="26" end1="27" start2="31" end2="31" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="63" end1="63" start2="67" end2="86" changelist="e98f8b66-cf25-4d50-aa50-d5d386cb19ff" />
-        <range start1="66" end1="66" start2="89" end2="97" changelist="bc8b336f-cb2d-4c7f-a277-02412142f29a" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -413,7 +312,8 @@
       <workItem from="1700596344542" duration="8672000" />
       <workItem from="1700605086399" duration="137000" />
       <workItem from="1700605247825" duration="30240000" />
-      <workItem from="1700684069552" duration="40753000" />
+      <workItem from="1700684069552" duration="40954000" />
+      <workItem from="1700754446436" duration="3180000" />
     </task>
     <task id="LOCAL-00001" summary="servicos de moderador , nota : se quito la cedula de la clase persona,se modifico el archivo usuariossql borrando las cedulas y se probaron los test nuevamente para corroborar la funcionalidad">
       <created>1682501406341</created>
@@ -562,7 +462,14 @@
       <option name="project" value="LOCAL" />
       <updated>1700688645547</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="crud de compra listo">
+      <created>1700732033549</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1700732033550</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -603,7 +510,8 @@
     <MESSAGE value="compra y consultas" />
     <MESSAGE value="compras crud en camino" />
     <MESSAGE value="implementacion del crud de compras ,solo funciona seteado,faltan las consultas" />
-    <option name="LAST_COMMIT_MESSAGE" value="implementacion del crud de compras ,solo funciona seteado,faltan las consultas" />
+    <MESSAGE value="crud de compra listo" />
+    <option name="LAST_COMMIT_MESSAGE" value="crud de compra listo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

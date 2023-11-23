@@ -47,6 +47,8 @@ public class CompraBean {
     @Getter @Setter
     private int[] cantidadLibros;
 
+    @Getter @Setter
+    private Compra compra;
 
     @Getter @Setter
     private List<Libro> librosDisponibles; // Lista de libros disponibles para la selección
@@ -68,7 +70,6 @@ public class CompraBean {
     }
 
 
-
     public void setMediosPago(List<MedioDePago> mediosPago) {
         this.mediosPago = mediosPago;
     }
@@ -81,6 +82,8 @@ public class CompraBean {
         librosDisponibles = getLibrosDisponibles();
         librosSeleccionados = new ArrayList<>();
         cantidadLibros = new int[librosDisponibles.size()];
+        compra = new Compra();
+
     }
 
 
@@ -95,10 +98,10 @@ public class CompraBean {
         public void crearCompraConLibros() {
             try {
                 // Crear la compra
-                Compra compra = new Compra();
-                compra.setCodigo("023");
-                compra.setMiUsuario(usuarioServicio.obtenerUsuario("910"));
 
+
+                //compra.setCodigo(codigo);
+                compra.setMiUsuario(usuarioServicio.obtenerUsuario("910"));
                 MedioDePago medioSeleccionado= getMedioSeleccionado();
                 compra.setMedioDePago(medioSeleccionado);
 
@@ -109,7 +112,7 @@ public class CompraBean {
                 // Crear el detalle de la compra para cada libro seleccionado
                 for (Libro libro : librosSeleccionados) {
                     DetalleCompra detalleCompra = new DetalleCompra();
-                    detalleCompra.setCodigo("76" + contadorDetalles); // Utilizando un contador
+                    detalleCompra.setCodigo(compra.getCodigo()+"-"+ contadorDetalles); // Utilizando un contador
                     contadorDetalles++; // Incrementar el contador
                     detalleCompra.setMiCompra(compra);
                     detalleCompra.setUnidades(3); // Misma cantidad para todos los libros en esta compra

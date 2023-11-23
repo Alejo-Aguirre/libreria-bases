@@ -32,11 +32,27 @@
                     <!-- MetodoDePago -->
                     <div class="mb-3">
                         <p:panel header="seleccionar el metodo de pago " style="width: 1200px; margin: 0 auto;">
-                            <h:outputLabel value="MetodoDePago" />
-                            <p:selectOneMenu id="metodoPago_p" value="#{compraBean.medioSeleccionado}">
-                                <f:selectItem itemLabel="Seleccionar" itemValue=""/>
-                                <f:selectItems value="#{compraBean.mediosPago}" />
-                            </p:selectOneMenu>
+
+                            <div class="ui-g">
+                                <div class="ui-g-3">
+                                    <h:outputLabel value="Código" for="codigo_u" style="display:block; text-align:right; margin-right:10px;"/>
+                                </div>
+                                <div class="ui-g-9">
+                                    <p:inputText id="codigo_u" value="#{compraBean.compra.codigo}" required="true"/>
+                                </div>
+                            </div>
+
+                            <div class="ui-g">
+                                <div class="ui-g-3">
+                                    <h:outputLabel value="Método de Pago" style="display:block; text-align:right; margin-right:10px;"/>
+                                </div>
+                                <div class="ui-g-9">
+                                    <p:selectOneMenu id="metodoPago_p" value="#{compraBean.medioSeleccionado}">
+                                        <f:selectItem itemLabel="Seleccionar" itemValue=""/>
+                                        <f:selectItems value="#{compraBean.mediosPago}" />
+                                    </p:selectOneMenu>
+                                </div>
+                            </div>
                         </p:panel>
                     </div>
 

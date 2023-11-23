@@ -65,6 +65,8 @@
     <h:form>
         <p:panel header="Registrar Usuario" style="background-color: #111111; color: #d3cfcf; font-weight: bold; padding: 10px;"
                  styleClass="panel-header">
+
+        <p:panel header="Informacion del usuario " style="width: 800px; margin: 0 auto;">
             <div class="form-grid">
                 <div class="ui-g">
                     <div class="ui-g-4">
@@ -147,8 +149,13 @@
                     </div>
                 </div>
 
+            </div>
+        </p:panel>
 
 
+
+        <p:panel header="Informacion del login" style="width: 800px; margin: 0 auto;">
+            <div class="form-grid">
                 <div class="ui-g">
                     <div class="ui-g-4">
                         <h:outputLabel value="Username" for="username_u" styleClass="input-label"/>
@@ -167,6 +174,7 @@
                     <p:password id="password_u" value="#{usuarioBean.usuario.password}" required="true"/>
                 </div>
             </div>
+        </p:panel>
 
             <p:growl id="growl" showDetail="true" sticky="true" life="5000"/>
             <p:commandButton value="Registrar Usuario" action="#{usuarioBean.registrarUsuario()}" update="@form"
