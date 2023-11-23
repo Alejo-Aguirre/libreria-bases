@@ -1,6 +1,8 @@
 package co.edu.uniquinidio.proyecto.bean;
 
+import co.edu.uniquindio.proyecto.entidades.Categoria;
 import co.edu.uniquindio.proyecto.entidades.Libro;
+import co.edu.uniquindio.proyecto.servicios.CategoriaServicio;
 import co.edu.uniquindio.proyecto.servicios.LibroServicio;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -33,6 +35,10 @@ public class MainLibroBean implements Serializable {
     }
     @Autowired
     private LibroServicio libroServicio;
+
+    @Autowired
+    private CategoriaServicio categoriaServicio;
+
 
     private List<Libro> libros;
 
@@ -73,11 +79,11 @@ public class MainLibroBean implements Serializable {
             // Lógica para eliminar usuario
             libroServicio.eliminarLibro(codigo);
             // Mostrar mensaje de éxito
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "libro eliminado correctamente", null);
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta","libro eliminado correctamente");
             FacesContext.getCurrentInstance().addMessage("messages", msg);
         } catch (Exception e) {
             // Mostrar mensaje de error
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al eliminar libro: " + e.getMessage(), null);
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta","Error al eliminar libro: " + e.getMessage());
             FacesContext.getCurrentInstance().addMessage("messages", msg);
         }
     }
@@ -102,8 +108,10 @@ public class MainLibroBean implements Serializable {
 
 
     /**
-     * este reporte permite listar todos los libros por el autor que se desee
+     * consulta simple
+     * lista los libros por el nombre de autor
      * @param autor
+     * @return
      */
 
     //la base
@@ -147,35 +155,51 @@ public class MainLibroBean implements Serializable {
             document.close();
 
             // Mostrar mensaje de éxito
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informe PDF generado correctamente", null);
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta","Informe PDF generado correctamente");
             FacesContext.getCurrentInstance().addMessage("messages", msg);
 
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
 
             // Mostrar mensaje de error
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al generar el informe PDF: " + e.getMessage(), null);
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta","Error al generar el informe PDF: " + e.getMessage());
             FacesContext.getCurrentInstance().addMessage("messages", msg);
         }
     }
 
-    public void generarReporteIntermedio(float precioSuperior) {
+
+    /**
+     * Reporte intermedio
+     * este reporte permite listar libros por categoria ( se hace join con la tabla) y los ordenados por precio desc
+     *
+     */
+    public void generarReporteIntermedio() {
         try {
-            // Obtener la lista de libros con precio superior al valor proporcionado
-            List<Libro> libros = libroServicio.buscarLibrosPorPrecioSuperior(precioSuperior);
+            // Obtener la categoría por su nombre
+            Categoria categoria = categoriaServicio.obtenerCategoriaxn("Terror");
+
+            // Verificar si la categoría es nula
+            if (categoria == null) {
+                // Mostrar mensaje de error si la categoría no se encuentra
+                FacesMessage errorMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", "Categoría no encontrada: Misterio");
+                FacesContext.getCurrentInstance().addMessage("messages", errorMsg);
+                return;
+            }
+
+            // Obtener la lista de libros por la categoría específica, ordenados por precio descendente
+            List<Libro> libros = libroServicio.obtenerLibrosPorCategoriaOrdenadosPorPrecioDescendente(categoria);
 
             Document document = new Document();
-            String filePath = "C:/Users/lenovo/Desktop/pdfs/libros_precio_superior_" + precioSuperior + ".pdf";
+            String filePath = "C:/Users/lenovo/Desktop/pdfs/libros_" + categoria.getNombre() + "_intermedio.pdf";
 
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
 
-            document.add(new Paragraph("Reporte de Libros con Precio Superior a " + precioSuperior + ", Ordenados por Nombre"));
+            document.add(new Paragraph("Reporte Intermedio de Libros de la categoría " + categoria.getNombre()));
 
-            PdfPTable table = new PdfPTable(5); // 5 columnas
+            PdfPTable table = new PdfPTable(5);
             table.setWidthPercentage(100);
 
-            // Añadir encabezados de columna
             table.addCell("No.");
             table.addCell("Código");
             table.addCell("Autor");
@@ -199,21 +223,26 @@ public class MainLibroBean implements Serializable {
             document.close();
 
             // Mostrar mensaje de éxito
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informe PDF generado correctamente", null);
-            FacesContext.getCurrentInstance().addMessage("messages", msg);
+            FacesMessage successMsg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta", "Informe Intermedio PDF generado correctamente");
+            FacesContext.getCurrentInstance().addMessage("messages", successMsg);
 
         } catch (DocumentException | IOException e) {
             e.printStackTrace();
 
             // Mostrar mensaje de error
-            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al generar el informe PDF: " + e.getMessage(), null);
-            FacesContext.getCurrentInstance().addMessage("messages", msg);
+            FacesMessage errorMsg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta", "Error al generar el informe intermedio PDF: " + e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("messages", errorMsg);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
 
     /**
      * reporte complejo
+     * consulta compleja con subconsulta
+     * Consulta para obtener libros con su categoría y autor,
+     * pero solo para aquellos cuya categoría tiene más de cierta cantidad de unidades en total:
      * @param unidades
      */
     public void generarReporteComplejo(String unidades) {
@@ -272,10 +301,96 @@ public class MainLibroBean implements Serializable {
         }
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * lista los libros segun el precio y los ordena asc por nombre
+     */
+    public void generarReporteIntermedio2(float precioSuperior) {
+        try {
+            // Obtener la lista de libros con precio superior al valor proporcionado
+            List<Libro> libros = libroServicio.buscarLibrosPorPrecioSuperior(precioSuperior);
+
+            Document document = new Document();
+            String filePath = "C:/Users/lenovo/Desktop/pdfs/libros_precio_superior_" + precioSuperior + ".pdf";
+
+            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            document.open();
+
+            document.add(new Paragraph("Reporte de Libros con Precio Superior a " + precioSuperior + ", Ordenados por Nombre"));
+
+            PdfPTable table = new PdfPTable(5); // 5 columnas
+            table.setWidthPercentage(100);
+
+            // Añadir encabezados de columna
+            table.addCell("No.");
+            table.addCell("Código");
+            table.addCell("Autor");
+            table.addCell("Nombre");
+            table.addCell("Precio");
+
+            int contador = 1;
+
+            for (Libro libro : libros) {
+                table.addCell(String.valueOf(contador));
+                agregarCelda(table, libro.getCodigo());
+                agregarCelda(table, libro.getAutor());
+                agregarCelda(table, libro.getNombre());
+                agregarCelda(table, String.valueOf(libro.getPrecio()));
+
+                table.completeRow();
+                contador++;
+            }
+
+            document.add(table);
+            document.close();
+
+            // Mostrar mensaje de éxito
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Alerta", "Informe PDF generado correctamente");
+            FacesContext.getCurrentInstance().addMessage("messages", msg);
+
+        } catch (DocumentException | IOException e) {
+            e.printStackTrace();
+
+            // Mostrar mensaje de error
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Alerta","Error al generar el informe PDF: " + e.getMessage());
+            FacesContext.getCurrentInstance().addMessage("messages", msg);
+        }
+    }
+
+
     private void agregarCelda(PdfPTable table, String valor) {
         PdfPCell celda = new PdfPCell(new Phrase(valor));
         table.addCell(celda);
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

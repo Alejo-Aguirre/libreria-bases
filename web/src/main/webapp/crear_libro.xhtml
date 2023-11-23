@@ -71,6 +71,9 @@
             </p:panel>
 
             <p:commandButton value="Crear libro" action="#{libroBean.crearLibro()}" update="@form" icon="pi pi-user-plus" styleClass="center-button"/>
+
+            <!-- Mensajes de Alerta -->
+            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
         </h:form>
     </p:panel>
     <p:growl showDetail="true"/>

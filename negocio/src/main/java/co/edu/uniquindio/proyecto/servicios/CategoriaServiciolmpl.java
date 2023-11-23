@@ -56,6 +56,14 @@ public class CategoriaServiciolmpl implements CategoriaServicio {
         }
         return categoriaBuscada.get();
     }
+    @Override
+    public Categoria obtenerCategoriaxn(String nombre) throws Exception {
+        Optional<Categoria> categoriaBuscada = categoriaRepo.findAllByNombreContains(nombre);
+        if (categoriaBuscada.isEmpty()){
+            throw  new Exception("el codigo de la categoria no existe");
+        }
+        return categoriaBuscada.get();
+    }
 
     @Override
     public List<Categoria> listarCategorias() {

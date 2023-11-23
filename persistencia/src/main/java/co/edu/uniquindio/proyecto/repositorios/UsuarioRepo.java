@@ -68,8 +68,9 @@ public interface UsuarioRepo extends JpaRepository<Usuario,String> {
      * @param letra
      * @return
      */
-    @Query("SELECT u FROM Usuario u WHERE LOWER(SUBSTRING(u.codigo, 1, 1)) = LOWER(:letra)")
+    @Query("SELECT u FROM Usuario u WHERE LOWER(SUBSTRING(LOWER(u.nombre), 1, 1)) = LOWER(:letra)")
     List<Usuario> obtenerUsuariosPorLetra(@Param("letra") String letra);
+
 
 
 

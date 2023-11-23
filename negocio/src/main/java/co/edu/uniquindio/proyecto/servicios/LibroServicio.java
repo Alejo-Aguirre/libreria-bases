@@ -44,6 +44,8 @@ public interface LibroServicio {
 
     List<Object[]> BuscarLibroCategoriaAutorPorCategoriasConMasUnidades(Long unidades);
 
+    List<Libro>obtenerLibrosPorCategoriaOrdenadosPorPrecioDescendente(Categoria categoria);
+
 
     ;
 }

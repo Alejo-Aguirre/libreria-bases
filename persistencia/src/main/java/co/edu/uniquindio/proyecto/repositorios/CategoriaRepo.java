@@ -31,7 +31,7 @@ public interface CategoriaRepo extends JpaRepository<Categoria,String> {
  //---------------------------------Consultas inferidas por SpringBoot----------------------------------------
 
     //con inferencia de datos gracias a el framework de spring que es JPArepository
-    List<Categoria>findAllByNombreContains(String nombre);
+    Optional<Categoria> findAllByNombreContains(String nombre);
     Page<Categoria> findAllBy(Pageable paginador);
     Optional<Categoria> findByCodigo(String codigo);
     //con inferencia de datos gracias a el framework de spring que es JPArepository

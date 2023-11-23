@@ -164,7 +164,11 @@ public class LibroServicioImpl implements LibroServicio {
     }
 
 
-    //BuscarLibroCategoriaAutorPorCategoriasConMasUnidades
+
+    @Override
+    public List<Libro>obtenerLibrosPorCategoriaOrdenadosPorPrecioDescendente(Categoria categoria){
+        return  libroRepo.obtenerLibrosPorCategoriaOrdenadosPorPrecioDescendente(categoria);
+    }
 
 
 

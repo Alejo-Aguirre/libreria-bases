@@ -69,7 +69,7 @@ public class MainCompraBean implements Serializable {
         try {
 
             //seteo de la compra
-            compra.setCodigo("005");
+            compra.setCodigo("006");
             compra.setMiUsuario(usuarioServicio.obtenerUsuario("910"));
             compra.setFechaCreacion(LocalDate.now());
             compra.setValorTotal(200F);

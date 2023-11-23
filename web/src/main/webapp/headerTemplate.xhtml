@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 <h:head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -16,17 +16,37 @@
     <style>
         body {
             padding-top: 60px;
+            margin: 0;
+            height: 100%;
+        }
+
+        #header {
+            width: 100%;
+            height: 100%;
+        }
+
+        .header-content {
+            width: 100%;
+            height: 100%;
         }
 
         .input-search input {
             width: 400px;
         }
+
+        #content {
+            padding-top: 70px; /* Ajusta según sea necesario */
+            overflow: auto; /* Permitir tanto el desplazamiento vertical como horizontal */
+            height: calc(100% - 70px); /* Ajusta según sea necesario */
+            max-height: calc(100% - 70px); /* Ajusta según sea necesario */
+        }
     </style>
 </h:head>
-<h:body>
+
+<h:body style="height: 100%;">
     <div id="header">
         <header class="p-3 bg-dark text-white fixed-top">
-            <div class="container">
+            <div class="container-fluid">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
                         <i class="pi pi-shopping-cart" style="font-size: 2rem; margin-right: 10px"></i>
@@ -34,6 +54,7 @@
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="index.xhtml" class="nav-link px-2 text-secondary">Inicio</a></li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Categorías
@@ -51,23 +72,22 @@
                             <li><a href="MainEmpleados.xhtml" class="nav-link px-2 text-white">Empleados</a></li>
                         </ui:fragment>
 
+
+
                         <!-- Mostrar solo si el usuario está autenticado y es moderador -->
                         <ui:fragment rendered="#{seguridadBean.autenticado and seguridadBean.rol eq 'MODERADOR'}">
                             <li><a href="MainCompras.xhtml" class="nav-link px-2 text-white">Compras</a></li>
                         </ui:fragment>
                     </ul>
 
-
                     <h:form id="formPrincipal">
                         <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 input-search ui-inputgroup">
-                            <p:inputText placeholder="¿Qué libro estás buscando?" required="true"
-                                         value="#{busquedaBean.busqueda}"/>
+                            <p:inputText placeholder="¿Qué libro estás buscando?" required="true" value="#{busquedaBean.busqueda}"/>
                             <p:commandButton icon="pi pi-search" action="#{busquedaBean.buscar()}" update=":formPrincipal"/>
                         </div>
                     </h:form>
 
                     <!-- Sección de inicio de sesión -->
-                    <!-- Sección de inicio de sesión y usuario autenticado -->
                     <h:form id="formLogin" rendered="#{not seguridadBean.autenticado}">
                         <div class="text-end">
                             <a href="#" class="btn btn-outline-light me-2" onclick="PF('loginDialog').show()">Iniciar sesión</a>
@@ -82,7 +102,6 @@
                         </div>
                     </h:form>
 
-                    <!-- Diálogo de inicio de sesión -->
                     <p:dialog header="Iniciar Sesión" showEffect="fade" widgetVar="loginDialog" modal="true" rendered="#{not seguridadBean.autenticado}">
                         <h:form>
                             <h:panelGrid columns="2" columnClasses="label, value">
@@ -92,69 +111,20 @@
                                 <h:outputLabel for="password" value="Contraseña:" />
                                 <p:password id="password" value="#{seguridadBean.password}" required="true" />
 
-                                <!-- Otros campos si es necesario -->
-
                                 <f:facet name="footer">
                                     <p:commandButton value="Iniciar Sesión" action="#{seguridadBean.iniciarSesion}" update=":formPrincipal" oncomplete="PF('loginDialog').hide()" />
                                 </f:facet>
                             </h:panelGrid>
                         </h:form>
                     </p:dialog>
+                    <!-- Resto del contenido del encabezado ... -->
+
+                    <!-- Añade un marcador de posición para el contenido específico de cada página -->
+                    <ui:insert name="content"/>
 
                 </div>
             </div>
         </header>
     </div>
-
-
-    <div class="container mt-5">
-        <h4>Libros</h4>
-        <h:form>
-            <p:dataView value="#{inicioBean.libros}" var="libro" gridIcon="pi pi-th-large" listIcon="pi pi-bars" paginator="true" rows="9">
-                <p:dataViewGridItem>
-                    <div class="card">
-                        <img src="/uploads/#{libro.imagenPrincipal}" class="card-img-top" alt="..." style="max-height: 650px; object-fit: cover;"/>
-                        <div class="card-body">
-                            <h5 class="card-title">#{libro.nombre}</h5>
-                            <p class="card-text">Precio: #{libro.precio}</p>
-                            <p class="card-text">Categoria: #{libro.miCategoria.nombre}</p>
-                            <hr/>
-                            <p:commandButton value="Ver detalle" styleClass="ui-button-raised" icon="pi pi-arrow-right" iconPos="right"/>
-                        </div>
-                        <div class="card-footer">
-                            <span class="badge bg-primary">#{libro.categoria}</span>
-                        </div>
-                    </div>
-                </p:dataViewGridItem>
-
-                <p:dataViewListItem>
-                    <div class="row align-items-center">
-                        <div class="col-lg-2 col-md-2 text-center">
-                            <p:graphicImage url="/uploads/#{libro.imagenPrincipal}" styleClass="imagen-libro" style="max-height: 150px; object-fit: cover;"/>
-                        </div>
-                        <div class="col-lg-8 col-md-10">
-                            <p:outputPanel>
-                                <h:panelGrid columns="2" columnClasses="fw-bold,text-end">
-                                    <h:outputText value="Nombre:"/>
-                                    <h:outputText value="#{libro.nombre}"/>
-
-                                    <h:outputText value="Precio:"/>
-                                    <h:outputText value="#{libro.precio}"/>
-
-                                    <h:outputText value="Categoría:" />
-                                    <h:outputText value="#{libro.miCategoria.nombre}" styleClass="text-primary"/>
-                                </h:panelGrid>
-                            </p:outputPanel>
-                            <p:commandButton value="Ver detalle" styleClass="ui-button-raised mt-2" icon="pi pi-arrow-right" iconPos="right"/>
-                        </div>
-                    </div>
-                </p:dataViewListItem>
-            </p:dataView>
-        </h:form>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-6c+VFs3U1vFS0DjELBLZJWvC6VhmLvLX4OXtz7I1phjZvCisGnbU0btk1C0vB1aA"
-            crossorigin="anonymous"></script>
 </h:body>
 </html>

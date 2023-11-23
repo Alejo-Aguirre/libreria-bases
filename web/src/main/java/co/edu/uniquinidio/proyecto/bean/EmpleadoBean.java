@@ -64,6 +64,14 @@ public class EmpleadoBean  implements Serializable {
     public void registrarEmpleado(){
         try {
             empleado.setCodigo(generarNuevoCodigo());
+
+            Ciudad ciudadSeleccionada = getCiudadSeleccionada();
+            // Configurar la editorial seleccionada en el libro
+            empleado.setMiCiudad(ciudadSeleccionada);
+
+
+            Departamento departamentoSeleccionado= getDepartamentoSeleccionado();
+            empleado.setMiDepartamento(departamentoSeleccionado);
             empleadoServicio.registrarModerador(empleado);
             FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO,"Alerta","Registro exitoso");
             FacesContext.getCurrentInstance().addMessage(null,msg);

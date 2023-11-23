@@ -4,7 +4,8 @@ public enum Departamento {
     ANTIOQUIA,
     VALLE_DEL_CAUCA,
     ATLANTICO,
-    BOLIVA,
+
+    CALDAS,
     QUINDIO
 
 }

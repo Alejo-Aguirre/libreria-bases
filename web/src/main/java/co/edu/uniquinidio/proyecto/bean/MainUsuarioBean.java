@@ -153,6 +153,11 @@ public class MainUsuarioBean implements Serializable {
         return "registrar_usuario.xhtml?faces-redirect=true";
     }
 
+    /**
+     * consulta Simple
+     * lista todos los usuarios por la letra a
+     * @param letra
+     */
     public void generarReportePDF(String letra) {
         try {
             // Obtener la lista de usuarios por la letra específica
@@ -164,7 +169,7 @@ public class MainUsuarioBean implements Serializable {
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
 
-            document.add(new Paragraph("Reporte de Usuarios cuyos códigos inician con la letra " + letra));
+            document.add(new Paragraph("Reporte de Usuarios cuyos nombres inician con la letra " + letra));
 
             PdfPTable table = new PdfPTable(4); // 4 columnas (1 para el valor numérico y 3 para datos)
             table.setWidthPercentage(100);
@@ -204,11 +209,14 @@ public class MainUsuarioBean implements Serializable {
     }
 
 
-
-
-
+    /**
+     * consulta intermedia
+     * lista todos los usuarios de la ciudad tal
+     * @param ciudad
+     */
     public void generarReporteIntermedioPDF(Ciudad ciudad) {
         try {
+
             // Obtener la lista de usuarios por la letra específica
             List<Usuario> usuarios = usuarioServicio.obtenerUsuariosPorCiudad(ciudad);
 

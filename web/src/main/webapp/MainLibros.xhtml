@@ -1,28 +1,27 @@
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-<h:head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Main Libro</title>
-</h:head>
+<!-- Incluye el headTemplate -->
+<ui:composition template="headerTemplate.xhtml">
 
-<h:body>
+<ui:define name="content">
     <div class="container mt-5">
         <h4>Libros</h4>
         <h:form>
 
             <!-- Tabla de Libros -->
-            <p:dataTable id="librosTable" var="libro" value="#{mainLibroBean.libros}" paginator="true" rows="10"
+            <p:dataTable id="librosTable" var="libro" value="#{mainLibroBean.libros}" paginator="true" rows="5"
                          emptyMessage="No se encontraron libros">
 
                 <p:column headerText="Codigo" filterBy="#{libro.codigo}" filterMatchMode="contains">
                     <h:outputText value="#{libro.codigo}"/>
                 </p:column>
-
                 <p:column headerText="Nombre">
                     <h:outputText value="#{libro.nombre}"/>
                 </p:column>
@@ -34,6 +33,9 @@
                 </p:column>
                 <p:column headerText="Precio">
                     <h:outputText value="#{libro.precio}"/>
+                </p:column>
+                <p:column headerText="FechaCreacion">
+                    <h:outputText value="#{libro.fechaCreacion}"/>
                 </p:column>
                 <p:column headerText="Categoría">
                     <h:outputText value="#{libro.miCategoria.nombre}"/>
@@ -48,15 +50,27 @@
 
             <!-- Botones -->
             <div style="text-align: center; margin-top: 10px;">
-                <p:commandButton value="Crear Libro" action="#{mainLibroBean.redirigirFormulario}" icon="pi pi-plus"/>
-                <p:commandButton value="Generar Reporte" action="#{mainLibroBean.generarReportePDF('Gilmer')}" icon="pi pi-file-pdf"/>
+                <p:commandButton value="Crear Libro" action="#{mainLibroBean.redirigirFormulario}" icon="pi pi-plus"
+                                 process="@this"/>
+                <p:commandButton value="Generar Reporte" action="#{mainLibroBean.generarReportePDF('Gilmer')}"
+                                 icon="pi pi-file-pdf"
+                                 process="@this"/>
                 <!-- Botón para generar reporte intermedio -->
-                <p:commandButton value="Generar Reporte Intermedio" action="#{mainLibroBean.generarReporteIntermedio(500)}" icon="pi pi-file-pdf"/>
+                <p:commandButton value="Generar Reporte Intermedio"
+                                 action="#{mainLibroBean.generarReporteIntermedio}" icon="pi pi-file-pdf"/>
                 <!-- Botón para generar reporte complejo -->
-                <p:commandButton value="Generar Reporte Complejo" action="#{mainLibroBean.generarReporteComplejo('3')}" icon="pi pi-file-pdf"/>
+                <p:commandButton value="Generar Reporte Complejo" action="#{mainLibroBean.generarReporteComplejo('3')}"
+                                 icon="pi pi-file-pdf"/>
 
+                <!-- Mensajes de Alerta -->
+                <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
             </div>
+
+
+
         </h:form>
     </div>
-</h:body>
+</ui:define>
+
+</ui:composition>
 </html>

@@ -12,6 +12,7 @@ public interface CategoriaServicio {
     Categoria actualizarcategoria(Categoria categoria)throws Exception;
 
     Categoria obtenerCategoria(String codigo) throws Exception;
+    Categoria obtenerCategoriaxn(String nombre) throws Exception;
 
     List<Categoria> listarCategorias();
 

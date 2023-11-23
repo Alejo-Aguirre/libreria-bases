@@ -19,4 +19,8 @@ public interface ModeradorServicio {
 
     Moderador obtenerModerador(String codigo) throws Exception;
 
+
+    List<Moderador>obtenerEmpleadosPorDepartamento(Departamento departamento);
+
+    List<Moderador>obtenerEmpleadosPorLetraApellido(String letra);
 }

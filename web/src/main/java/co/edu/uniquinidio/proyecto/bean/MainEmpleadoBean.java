@@ -1,10 +1,16 @@
 package co.edu.uniquinidio.proyecto.bean;
 
 import co.edu.uniquindio.proyecto.entidades.Moderador;
+import co.edu.uniquindio.proyecto.entidades.Usuario;
+import co.edu.uniquindio.proyecto.entidades.enums.Ciudad;
+import co.edu.uniquindio.proyecto.entidades.enums.Departamento;
 import co.edu.uniquindio.proyecto.servicios.ModeradorServicio;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import lombok.Getter;
 import lombok.Setter;
@@ -183,26 +189,48 @@ public class MainEmpleadoBean implements Serializable {
         return "crear_Empleado.xhtml?faces-redirect=true";
     }
 
-    public void generarReportePDF() {
+
+
+    /**
+     * consulta Simple
+     * lista todos los empleados por la letra a en el apellido
+     * @param letra
+     */
+    public void generarReportePDF(String letra) {
         try {
-            // Lógica para generar el informe PDF
+            // Obtener la lista de empleados por la letra específica
+            List<Moderador> empleados = empleadoServicio.obtenerEmpleadosPorLetraApellido(letra);
+
             Document document = new Document();
-            String filePath = "C:/Users/lenovo/Desktop/pdfs/empleados.pdf";
+            String filePath = "C:/Users/lenovo/Desktop/pdfs/empleados_" + letra + ".pdf";
 
             PdfWriter.getInstance(document, new FileOutputStream(filePath));
             document.open();
 
-            document.add(new Paragraph("Reporte de Empleados"));
+            document.add(new Paragraph("Reporte de empleados cuyos apellidos inician con la letra " + letra));
+
+            PdfPTable table = new PdfPTable(4); // 4 columnas (1 para el valor numérico y 3 para datos)
+            table.setWidthPercentage(100);
+
+            // Añadir encabezados de columna
+            table.addCell("No.");
+            table.addCell("Código");
+            table.addCell("Nombre");
+            table.addCell("Apellido");
+
+            int contador = 1;
 
             for (Moderador empleado : empleados) {
-                document.add(new Paragraph("Código: " + empleado.getCodigo()));
-                document.add(new Paragraph("Nombre: " + empleado.getNombre()));
-                document.add(new Paragraph("Correo: " + empleado.getEmail()));
-                document.add(new Paragraph("Username: " + empleado.getUsername()));
-                document.add(new Paragraph("Password: " + empleado.getPassword()));
-                document.add(new Paragraph(""));
+                table.addCell(String.valueOf(contador));
+                agregarCelda(table, empleado.getCodigo());
+                agregarCelda(table, empleado.getNombre());
+                agregarCelda(table, empleado.getApellido());
+
+                table.completeRow(); // Completa la fila actual y comienza una nueva fila
+                contador++;
             }
 
+            document.add(table);
             document.close();
 
             // Mostrar mensaje de éxito
@@ -218,5 +246,66 @@ public class MainEmpleadoBean implements Serializable {
         }
     }
 
+    /**
+     * consulta intermedia
+     * lista todos los empleados del dpto tal
+     * @param departamento
+     */
+    public void generarReporteIntermedioPDF(Departamento departamento) {
+        try {
+
+            // Obtener la lista de empleados por la letra específica
+            List<Moderador> empleados = empleadoServicio.obtenerEmpleadosPorDepartamento(departamento);
+
+            Document document = new Document();
+            String filePath = "C:/Users/lenovo/Desktop/pdfs/empleados_" + departamento + ".pdf";
+
+            PdfWriter.getInstance(document, new FileOutputStream(filePath));
+            document.open();
+
+            document.add(new Paragraph("Reporte de empleados del departamento " +departamento));
+
+            PdfPTable table = new PdfPTable(4); // 4 columnas (1 para el valor numérico y 3 para datos)
+            table.setWidthPercentage(100);
+
+            // Añadir encabezados de columna
+            table.addCell("No.");
+            table.addCell("Código");
+            table.addCell("Nombre");
+            table.addCell("Apellido");
+
+            int contador = 1;
+
+            for (Moderador empleado : empleados) {
+                table.addCell(String.valueOf(contador));
+                agregarCelda(table, empleado.getCodigo());
+                agregarCelda(table, empleado.getNombre());
+                agregarCelda(table, empleado.getApellido());
+
+                table.completeRow(); // Completa la fila actual y comienza una nueva fila
+                contador++;
+            }
+
+            document.add(table);
+            document.close();
+
+            // Mostrar mensaje de éxito
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Informe PDF generado correctamente", null);
+            FacesContext.getCurrentInstance().addMessage("messages", msg);
+
+        } catch (DocumentException | IOException e) {
+            e.printStackTrace();
+
+            // Mostrar mensaje de error
+            FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error al generar el informe PDF: " + e.getMessage(), null);
+            FacesContext.getCurrentInstance().addMessage("messages", msg);
+        }
+    }
+
+
+    private void agregarCelda(PdfPTable table, String valor) {
+        PdfPCell celda = new PdfPCell(new Phrase(valor));
+        table.addCell(celda);
+    }
 
 }

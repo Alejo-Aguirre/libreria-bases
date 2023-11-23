@@ -62,17 +62,10 @@ public interface LibroRepo extends JpaRepository<Libro,String>{
             " WHERE l.autor = :autor")
     List<Libro> buscarLibroPorAutor(@Param("autor") String autor);
 
-    /**
-     * consulta intermedia
-     * lista los libros segun el precio y los ordena asc por nombre
-     * @param precioValor
-     * @return
-     */
-    @Query("SELECT l FROM Libro l WHERE l.precio > :precioValor ORDER BY l.nombre")
-    List<Libro> buscarLibrosPorPrecioSuperior(@Param("precioValor") float precioValor);
 
     /**
-     * consulta compleja
+     * Reporte intermedio
+     * este reporte permite listar libros por categoria ( se hace join con la tabla) y los ordenados por precio desc
      * @param categoriaValor
      * @return
      */
@@ -83,6 +76,7 @@ public interface LibroRepo extends JpaRepository<Libro,String>{
 
 
     /**
+     * consulta compleja con subconsulta
      * Consulta para obtener libros con su categoría y autor,
      * pero solo para aquellos cuya categoría tiene más de cierta cantidad de unidades en total:
      * @param cantidadUnidades
@@ -93,4 +87,15 @@ public interface LibroRepo extends JpaRepository<Libro,String>{
             "WHERE l.miCategoria IN (SELECT c FROM Categoria c WHERE (SELECT SUM(l2.unidades) FROM Libro l2 WHERE l2.miCategoria = c) > :cantidadUnidades)")
     List<Object[]> BuscarLibroCategoriaAutorPorCategoriasConMasUnidades(
             @Param("cantidadUnidades") Long cantidadUnidades);
+
+
+
+    /**
+     * consulta intermedia sobrante
+     * lista los libros segun el precio y los ordena asc por nombre
+     * @param precioValor
+     * @return
+     */
+    @Query("SELECT l FROM Libro l WHERE l.precio > :precioValor ORDER BY l.nombre")
+    List<Libro> buscarLibrosPorPrecioSuperior(@Param("precioValor") float precioValor);
 }

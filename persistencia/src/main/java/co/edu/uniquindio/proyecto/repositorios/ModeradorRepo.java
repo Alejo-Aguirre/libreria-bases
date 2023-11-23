@@ -29,12 +29,25 @@ public interface ModeradorRepo extends JpaRepository<Moderador,String> {
     @Query(value = "SELECT MAX(codigo) FROM Moderador", nativeQuery = true)
     Integer obtenerUltimoNumero();
 
-    /*
-    @Query("SELECT m " +
-            "FROM Moderador m"+
-            "WHERE m.miDepartamento = :departamento ORDER BY m.nombre")
-    List<Moderador> obtenerUsuariosPorDepartamento(@Param("departamento")Departamento departamento);
 
+
+    /**
+     * consulta simple
+     * sirve para listar todos los EMPLEADOS por Primera letra APELLLIDO
+     * @param letra
+     * @return
      */
+    @Query("SELECT m FROM Moderador m WHERE LOWER(SUBSTRING(LOWER(m.apellido), 1, 1)) = LOWER(:letra)")
+    List<Moderador> obtenerEmpleadosPorLetraApellido(@Param("letra") String letra);
+
+    /**
+     * consulta intermedia lista todos los empleados por dpto y ordena por nombre
+     * @param departamento
+     * @return
+     */
+    @Query("SELECT m " +
+            "FROM Moderador m "+
+            "WHERE m.miDepartamento = :departamento ORDER BY m.nombre")
+    List<Moderador> obtenerEmpleadosPorDepartamento(@Param("departamento") Departamento departamento);
 
 }
